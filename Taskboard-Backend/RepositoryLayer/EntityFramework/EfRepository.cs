@@ -15,39 +15,48 @@ namespace RepositoryLayer.EntityFramework
 
         protected readonly DbSet<T> Entities;
 
+        public IQueryable<T> Source
+        {
+            get
+            {
+                return Entities;
+            }
+        }
+
         public EfRepository(TaskboardContext context)
         {
             Context = context;
             Entities = context.Set<T>();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await Entities.ToListAsync();
         }
 
-        public Task<T> GetAsync(long id)
+        public async Task<T> GetAsync(long id)
         {
-            return Entities.SingleOrDefaultAsync(s => s.Id == id);
+            return await Entities.SingleOrDefaultAsync(s => s.Id == id);
         }
 
-        public Task InsertAsync(T entity)
+        public async Task InsertAsync(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            return Entities.AddAsync(entity);
+            await Entities.AddAsync(entity);
         }
 
-        public Task InsertRangeAsync(IEnumerable<T> entities)
+        public async Task InsertRangeAsync(IEnumerable<T> entities)
         {
             if (entities == null)
             {
                 throw new ArgumentNullException(nameof(entities));
             }
-            return Entities.AddRangeAsync(entities);
+
+            await Entities.AddRangeAsync(entities);
         }
 
         public void Update(T entity)
@@ -93,9 +102,9 @@ namespace RepositoryLayer.EntityFramework
             Context.RemoveRange(Entities);
         }
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            return Context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
     }
 }
