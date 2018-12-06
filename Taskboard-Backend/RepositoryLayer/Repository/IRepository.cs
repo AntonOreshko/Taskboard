@@ -1,0 +1,29 @@
+﻿using DomainModels.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace RepositoryLayer.Repository
+{
+    public interface IRepository<T> where T : IDatabaseItem
+    {
+        Task<IEnumerable<T>> GetAllAsync();
+
+        Task<T> GetAsync(long id);
+
+        Task InsertAsync(T entity);
+
+        Task InsertRangeAsync(IEnumerable<T> entities);
+
+        void Update(T entity);
+
+        void UpdateRange(IEnumerable<T> entities);
+
+        void Remove(T entity);
+
+        void RemoveRange(IEnumerable<T> entities);
+
+        void Clear();
+
+        Task SaveChangesAsync();
+    }
+}
