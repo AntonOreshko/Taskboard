@@ -13,6 +13,8 @@ namespace RepositoryLayer.Repository
 
         Task<T> GetAsync(long id);
 
+        Task<bool> ContainsAsync(T entity);
+
         Task InsertAsync(T entity);
 
         Task InsertRangeAsync(IEnumerable<T> entities);

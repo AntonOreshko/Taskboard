@@ -14,6 +14,7 @@ using RepositoryLayer.EntityFramework;
 using RepositoryLayer.EntityFramework.Context;
 using RepositoryLayer.Repository;
 using System.Text;
+using AutoMapper;
 
 namespace WebApi
 {
@@ -26,7 +27,6 @@ namespace WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -40,6 +40,8 @@ namespace WebApi
             });
 
             services.AddDbContext<TaskboardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection"), b => b.MigrationsAssembly("WebApi")));
+
+            services.AddAutoMapper();
 
             ConfigureEfRepositories(services);
             ConfigureItemServices(services);
@@ -84,7 +86,6 @@ namespace WebApi
             services.AddTransient<INoteService, NoteService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

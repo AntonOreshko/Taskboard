@@ -39,6 +39,11 @@ namespace RepositoryLayer.EntityFramework
             return await Entities.SingleOrDefaultAsync(s => s.Id == id);
         }
 
+        public async Task<bool> ContainsAsync(T entity)
+        {
+            return await Entities.ContainsAsync(entity);
+        }
+
         public async Task InsertAsync(T entity)
         {
             if (entity == null)
@@ -106,5 +111,6 @@ namespace RepositoryLayer.EntityFramework
         {
             await Context.SaveChangesAsync();
         }
+
     }
 }

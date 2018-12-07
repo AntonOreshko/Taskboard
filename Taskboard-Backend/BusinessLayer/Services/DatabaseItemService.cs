@@ -15,6 +15,11 @@ namespace BusinessLayer.Services
             Repository = repo;
         }
 
+        public async Task<bool> Exists(T item)
+        {
+            return await Repository.ContainsAsync(item);
+        }
+
         public async Task Add(T item)
         {
             await Repository.InsertAsync(item);

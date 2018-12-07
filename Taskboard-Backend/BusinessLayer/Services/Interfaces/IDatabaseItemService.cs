@@ -13,6 +13,8 @@ namespace BusinessLayer.Services.Interfaces
 
         Task<T> Get(long id);
 
+        Task<bool> Exists(T item);
+
         Task Add(T item);
 
         Task Add(IEnumerable<T> items);
