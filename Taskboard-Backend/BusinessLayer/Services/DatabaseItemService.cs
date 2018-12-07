@@ -10,6 +10,11 @@ namespace BusinessLayer.Services
     {
         public IRepository<T> Repository { get; set; }
 
+        public DatabaseItemService(IRepository<T> repo)
+        {
+            Repository = repo;
+        }
+
         public async Task Add(T item)
         {
             await Repository.InsertAsync(item);
