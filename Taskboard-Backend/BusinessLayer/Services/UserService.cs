@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BusinessLayer.Services.Interfaces;
 using DomainModels.Models;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,7 @@ namespace BusinessLayer.Services
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+            user.Created = DateTime.Now;
 
             await Add(user);
 
@@ -46,7 +48,7 @@ namespace BusinessLayer.Services
 
             if (user == null) return null;
 
-            if (VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 return null;
             }

@@ -17,19 +17,12 @@ namespace WebApi.Migrations
                     EMAIL = table.Column<string>(maxLength: 256, nullable: false),
                     FULL_NAME = table.Column<string>(maxLength: 256, nullable: false),
                     CREATED = table.Column<DateTime>(nullable: false),
-                    CREATED_BY = table.Column<long>(nullable: false),
                     PASSWORD_HASH = table.Column<byte[]>(nullable: false),
                     PASSWORD_SALT = table.Column<byte[]>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_USERS", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_USERS_USERS_CREATED_BY",
-                        column: x => x.CREATED_BY,
-                        principalTable: "USERS",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -231,11 +224,6 @@ namespace WebApi.Migrations
                 name: "IX_USER_BOARDS_BOARD_ID",
                 table: "USER_BOARDS",
                 column: "BOARD_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_USERS_CREATED_BY",
-                table: "USERS",
-                column: "CREATED_BY");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

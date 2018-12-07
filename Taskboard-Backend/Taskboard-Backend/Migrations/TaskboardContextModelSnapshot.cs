@@ -170,9 +170,6 @@ namespace WebApi.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnName("CREATED");
 
-                    b.Property<long>("CreatedById")
-                        .HasColumnName("CREATED_BY");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnName("EMAIL")
@@ -192,8 +189,6 @@ namespace WebApi.Migrations
                         .HasColumnName("PASSWORD_SALT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
 
                     b.ToTable("USERS");
                 });
@@ -263,14 +258,6 @@ namespace WebApi.Migrations
                         .HasForeignKey("CompletedById")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("DomainModels.Models.User", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("DomainModels.Models.User", b =>
-                {
                     b.HasOne("DomainModels.Models.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")

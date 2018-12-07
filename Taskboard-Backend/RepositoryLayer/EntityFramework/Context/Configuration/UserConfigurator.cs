@@ -29,9 +29,6 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
                 .HasColumnName("CREATED")
                 .IsRequired();
 
-            builder.Property(e => e.CreatedById)
-                .HasColumnName("CREATED_BY");
-
             builder.Property(e => e.PasswordHash)
                 .HasColumnName("PASSWORD_HASH")
                 .IsRequired();
@@ -43,11 +40,6 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
             builder.HasMany(e => e.UserBoards)
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.UserId);
-
-            builder.HasOne(e => e.CreatedBy)
-                .WithMany()
-                .HasForeignKey(e => e.CreatedById)
-                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasKey(e => e.Id);
 
