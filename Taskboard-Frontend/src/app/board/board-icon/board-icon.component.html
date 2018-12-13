@@ -1,0 +1,9 @@
+<div class="ml-2 mr-2 mt-2">
+  <div class="card" style="width:300px">
+    <div class="card-body">
+      <h4 class="card-title">{{ board.name }}</h4>
+      <p class="card-text">{{ board.description }}</p>
+      <a [routerLink]="['/tasklist/']" routerLinkActive="router-link-active"  class="btn btn-primary text-white">Open</a>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { RegisterData } from '../interfaces/register-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService) { }
+  constructor(private _authService: AuthService,
+              private _router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -32,7 +34,15 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.registerForm.valid) {
-      this.authService.register(this.getRegisterData());
+      this._authService.register(this.getRegisterData())
+        .subscribe(
+          response => {
+            this._router.navigate(['login']);
+          },
+          error => {
+
+          }
+        );
     }
   }
 
