@@ -42,7 +42,12 @@ namespace WebApi.Controllers
 
             var registeredUser = await _userService.Register(user, userRegisterDto.Password);
 
-            return StatusCode(201);
+            var userDto = _mapper.Map<UserReturnDto>(registeredUser);
+
+            return Ok(new
+            {
+                userDto
+            });
         }
 
         [HttpPost("login")]

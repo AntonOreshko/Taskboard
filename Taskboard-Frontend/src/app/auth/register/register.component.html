@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-5">
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="inputEmail">Email address:</label>
+          <input id="inputEmail" 
+              type="email" 
+              class="form-control"  
+              aria-describedby="emailHelp" 
+              placeholder="Enter email"
+              formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="inputFullname">Full name:</label>
+          <input id="inputFullname"
+              type="text" 
+              class="form-control" 
+              placeholder="Enter full name"
+              formControlName="fullname">
+        </div>  
+        <div class="form-group">
+          <label for="inputPassword">Password:</label>
+          <input id="inputPassword"
+              type="password" 
+              class="form-control" 
+              placeholder="Password"
+              formControlName="password">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password:</label>
+          <input  id="confirmPassword"
+              type="password" 
+              class="form-control" 
+              placeholder="Confirm Password"
+              formControlName="confirmPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>    
+    </div>
+  </div>
+</div>
