@@ -2,7 +2,7 @@
 
 namespace RepositoryLayer.Repository
 {
-    public interface ITaskRepository : IRepository<Task>
+    public interface IUserBoardRepository: IRepository<UserBoard>
     {
 
     }

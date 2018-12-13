@@ -21,19 +21,5 @@ namespace RepositoryLayer.EntityFramework
 
             return await Entities.Where(b => userBoardIds.Contains(b.Id)).ToListAsync();
         }
-
-        public override async System.Threading.Tasks.Task InsertAsync(Board entity)
-        {
-            var userBoard = new UserBoard
-            {
-                BoardId = entity.Id,
-                UserId = entity.CreatedById
-            };
-
-            entity.UserBoards = new List<UserBoard>();
-            entity.UserBoards.Add(userBoard);
-
-            await base.InsertAsync(entity);
-        }
     }
 }

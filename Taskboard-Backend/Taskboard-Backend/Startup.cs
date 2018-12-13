@@ -39,7 +39,7 @@ namespace WebApi
                 options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
 
-            services.AddDbContext<TaskboardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection"), b => b.MigrationsAssembly("WebApi")));
+            services.AddDbContext<TaskboardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection"), b => b.MigrationsAssembly("WebApi")));
 
             services.AddAutoMapper();
 
@@ -69,12 +69,14 @@ namespace WebApi
             services.AddTransient<IRepository<Task>, EfRepository<Task>>();
             services.AddTransient<IRepository<Subtask>, EfRepository<Subtask>>();
             services.AddTransient<IRepository<Note>, EfRepository<Note>>();
+            services.AddTransient<IRepository<UserBoard>, EfRepository<UserBoard>>();
 
             services.AddTransient<IUserRepository, EfUserRepository>();
             services.AddTransient<IBoardRepository, EfBoardRepository>();
             services.AddTransient<ITaskRepository, EfTaskRepository>();
             services.AddTransient<ISubtaskRepository, EfSubtaskRepository>();
             services.AddTransient<INoteRepository, EfNoteRepository>();
+            services.AddTransient<IUserBoardRepository, EfUserBoardRepository>();
         }
 
         private void ConfigureItemServices(IServiceCollection services)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer.Services.Interfaces;
@@ -6,12 +7,13 @@ using DomainModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Dto;
+using WebApi.Extensions;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class BoardController : ControllerBase
     {
         private readonly IBoardService _boardService;
@@ -24,9 +26,11 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{userId}/list")]
-        public async Task<IActionResult> GetBoards(long userId)
+        [HttpGet("list")]
+        public async Task<IActionResult> GetBoards()
         {
+            var userId = this.GetUserId();
+
             var boards = await _boardService.GetAllBoardsByUserId(userId);
 
             var boardsToReturn = _mapper.Map<IEnumerable<BoardReturnDto>>(boards);
@@ -37,9 +41,11 @@ namespace WebApi.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddBoard(BoardCreateDto boardCreateDto)
         {
+            var userId = this.GetUserId();
+
             var board = new Board
             {
-                CreatedById = boardCreateDto.CreatedById,
+                CreatedById = userId,
                 Name = boardCreateDto.Name,
                 Description = boardCreateDto.Description
             };
