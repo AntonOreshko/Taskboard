@@ -15,58 +15,58 @@ namespace BusinessLayer.Services
             Repository = repo;
         }
 
-        public async Task<bool> Exists(T item)
+        public virtual async Task<bool> Exists(T item)
         {
             return await Repository.ContainsAsync(item);
         }
 
-        public async Task Add(T item)
+        public virtual async Task Add(T item)
         {
             await Repository.InsertAsync(item);
             await Repository.SaveChangesAsync();
         }
 
-        public async Task Add(IEnumerable<T> items)
+        public virtual async Task Add(IEnumerable<T> items)
         {
             await Repository.InsertRangeAsync(items);
             await Repository.SaveChangesAsync();
         }
 
-        public async Task Change(T item)
+        public virtual async Task Change(T item)
         {
             Repository.Update(item);
             await Repository.SaveChangesAsync();
         }
 
-        public async Task Change(IEnumerable<T> items)
+        public virtual async Task Change(IEnumerable<T> items)
         {
             Repository.UpdateRange(items);
             await Repository.SaveChangesAsync();
         }
 
-        public async Task Clear()
+        public virtual async Task Clear()
         {
             Repository.Clear();
             await Repository.SaveChangesAsync();
         }
 
-        public async Task<T> Get(long id)
+        public virtual async Task<T> Get(long id)
         {
             return await Repository.GetAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
             return await Repository.GetAllAsync();
         }
 
-        public async Task Remove(T item)
+        public virtual async Task Remove(T item)
         {
             Repository.Remove(item);
             await Repository.SaveChangesAsync();
         }
 
-        public async Task Remove(IEnumerable<T> items)
+        public virtual async Task Remove(IEnumerable<T> items)
         {
             Repository.RemoveRange(items);
             await Repository.SaveChangesAsync();

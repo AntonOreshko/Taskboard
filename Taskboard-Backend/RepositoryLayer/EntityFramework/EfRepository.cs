@@ -29,22 +29,22 @@ namespace RepositoryLayer.EntityFramework
             Entities = context.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await Entities.ToListAsync();
         }
 
-        public async Task<T> GetAsync(long id)
+        public virtual async Task<T> GetAsync(long id)
         {
             return await Entities.SingleOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<bool> ContainsAsync(T entity)
+        public virtual async Task<bool> ContainsAsync(T entity)
         {
             return await Entities.ContainsAsync(entity);
         }
 
-        public async Task InsertAsync(T entity)
+        public virtual async Task InsertAsync(T entity)
         {
             if (entity == null)
             {
@@ -54,7 +54,7 @@ namespace RepositoryLayer.EntityFramework
             await Entities.AddAsync(entity);
         }
 
-        public async Task InsertRangeAsync(IEnumerable<T> entities)
+        public virtual async Task InsertRangeAsync(IEnumerable<T> entities)
         {
             if (entities == null)
             {
@@ -64,7 +64,7 @@ namespace RepositoryLayer.EntityFramework
             await Entities.AddRangeAsync(entities);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             if (entity == null)
             {
@@ -74,7 +74,7 @@ namespace RepositoryLayer.EntityFramework
             Entities.Update(entity);
         }
 
-        public void UpdateRange(IEnumerable<T> entities)
+        public virtual void UpdateRange(IEnumerable<T> entities)
         {
             if (entities == null)
             {
@@ -84,7 +84,7 @@ namespace RepositoryLayer.EntityFramework
             Entities.UpdateRange(entities);
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(T entity)
         {
             if (entity == null)
             {
@@ -93,7 +93,7 @@ namespace RepositoryLayer.EntityFramework
             Entities.Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public virtual void RemoveRange(IEnumerable<T> entities)
         {
             if (entities == null)
             {
@@ -102,12 +102,12 @@ namespace RepositoryLayer.EntityFramework
             Entities.RemoveRange(entities);
         }
 
-        public void Clear()
+        public virtual void Clear()
         {
             Context.RemoveRange(Entities);
         }
 
-        public async Task SaveChangesAsync()
+        public virtual async Task SaveChangesAsync()
         {
             await Context.SaveChangesAsync();
         }
