@@ -14,5 +14,7 @@ namespace BusinessLayer.Services.Interfaces
         Task<Board> CreateBoard(Board board);
 
         Task<Board> EditBoard(Board board);
+
+        Task<bool> DeleteBoard(Board board);
     }
 }

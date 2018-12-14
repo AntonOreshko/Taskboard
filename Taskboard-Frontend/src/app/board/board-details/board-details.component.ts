@@ -30,9 +30,11 @@ export class BoardDetailsComponent implements OnInit {
     });
 
     this._mode = 'new';
-    this._boardId = +this._route.snapshot.params['id'];
+    this._boardId = this._route.snapshot.params['id'];
 
-    if (this._boardId !== undefined) {
+    if (this._boardId !== undefined
+        && this._boardId !== NaN
+        && this._boardId !== null) {
       this._mode = 'edit';
       this._boardService.getBoard(this._boardId)
         .subscribe(
@@ -82,6 +84,10 @@ export class BoardDetailsComponent implements OnInit {
 
       }
     );
+  }
+
+  public back() {
+    this._router.navigate(['boards/list']);
   }
 
   public getBoardNewData(): BoardNewData {

@@ -37,6 +37,13 @@ namespace BusinessLayer.Services
             return board;
         }
 
+        public async Task<bool> DeleteBoard(Board board)
+        {
+            await Remove(board);
+
+            return true;
+        }
+
         public override async System.Threading.Tasks.Task Add(Board board)
         {
             var userBoard = new UserBoard

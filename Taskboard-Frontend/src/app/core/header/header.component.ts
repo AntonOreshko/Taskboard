@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,12 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private _authService: AuthService,
               private _router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
   }
 
   public isAuthenticated(): boolean {

@@ -90,5 +90,19 @@ namespace WebApi.Controllers
             return Ok(boardReturnDto);
         }
 
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteBoard(long id)
+        {
+            var board = await _boardService.Get(id);
+
+            if (board.CreatedById != this.GetUserId())
+            {
+                return Unauthorized();
+            }
+
+            var result = await _boardService.DeleteBoard(board);
+
+            return Ok(result);
+        }
     }
 }
