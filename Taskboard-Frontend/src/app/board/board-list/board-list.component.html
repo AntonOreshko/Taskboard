@@ -1,6 +1,6 @@
-<div class="row mt-2 mb-2">
+<div class="row mt-3 mb-2">
   <app-board-menu></app-board-menu>
 </div>
-<div class="d-flex flex-row">
-  <app-board-icon *ngFor="let board of boards"></app-board-icon>
+<div class="d-flex flex-row flex-wrap">
+  <app-board-icon *ngFor="let board of boards" [board]="board"></app-board-icon>
 </div>

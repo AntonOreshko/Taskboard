@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Board } from '../interfaces/board';
 
 @Component({
@@ -8,18 +8,23 @@ import { Board } from '../interfaces/board';
 })
 export class BoardIconComponent implements OnInit {
 
-  public board: Board;
+  @Input() board: Board;
 
   constructor() { }
 
   ngOnInit() {
-    this.board = {
-      id: 1,
-      created: 'today',
-      createdById: 1,
-      name: 'Superboard',
-      description: 'Superdescription'
-    };
+
   }
 
+  public open() {
+
+  }
+
+  public edit() {
+
+  }
+
+  public remove() {
+
+  }
 }

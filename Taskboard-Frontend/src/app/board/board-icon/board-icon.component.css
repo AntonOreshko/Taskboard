@@ -1,0 +1,15 @@
+.btn-width {
+    min-width: 70px !important;
+}
+
+.board-icon {
+    min-width: 250px;
+}
+
+.board-name {
+    min-height: 30px;
+}
+
+.board-description {
+    min-height: 40px;
+}
