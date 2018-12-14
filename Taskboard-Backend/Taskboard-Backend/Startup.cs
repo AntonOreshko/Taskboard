@@ -39,7 +39,7 @@ namespace WebApi
                 options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
 
-            services.AddDbContext<TaskboardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeConnection"), b => b.MigrationsAssembly("WebApi")));
+            services.AddDbContext<TaskboardContext>(options => options.UseSqlServer(Configuration.GetConnectionString("WorkConnection"), b => b.MigrationsAssembly("WebApi")));
 
             services.AddAutoMapper();
 

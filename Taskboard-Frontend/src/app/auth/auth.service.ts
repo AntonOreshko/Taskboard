@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserData } from './interfaces/user-data';
 import { HttpService } from '../core/http.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,28 +22,32 @@ export class AuthService extends HttpService {
   }
 
   public register(data: RegisterData): Observable<any> {
-    const observable = this._httpClient.post(this._baseUrl + 'api/auth/register', data, { headers: this.getHeaders() });
-      observable.subscribe(
-        response => {
-          this._userData = response['userDto'];
-        }
+    return this._httpClient.post(this._baseUrl + 'api/auth/register', data, { headers: this.getHeaders() })
+      .pipe(
+        map(
+          (response: any) => {
+            this._userData = response['userDto'];
+          }
+        )
       );
-    return observable;
   }
 
   public login(data: LoginData) {
-    const observable = this._httpClient.post(this._baseUrl + 'api/auth/login', data, { headers: this.getHeaders() });
-      observable.subscribe(
-        response => {
-          this._token = response['token'];
-          this._userData = response['userDto'];
-        }
+    return this._httpClient.post(this._baseUrl + 'api/auth/login', data, { headers: this.getHeaders() })
+      .pipe(
+        map(
+          (response: any) => {
+            this._token = response['token'];
+            this._userData = response['userDto'];
+            localStorage.setItem('token', this._token);
+          }
+        )
       );
-    return observable;
   }
 
   public logout() {
     this._token = null;
+    localStorage.removeItem('token');
   }
 
   public isAuthenticated(): boolean {
@@ -50,6 +55,9 @@ export class AuthService extends HttpService {
   }
 
   public getToken(): string {
+    if (this._token === null) {
+      this._token = localStorage.getItem('token');
+    }
     return this._token;
   }
 }
