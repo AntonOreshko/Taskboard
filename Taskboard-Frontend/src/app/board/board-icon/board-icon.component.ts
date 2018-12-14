@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Board } from '../interfaces/board';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-icon',
@@ -10,7 +11,7 @@ export class BoardIconComponent implements OnInit {
 
   @Input() board: Board;
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
 
@@ -21,7 +22,7 @@ export class BoardIconComponent implements OnInit {
   }
 
   public edit() {
-
+    this._router.navigate(['boards/edit/' + this.board.id]);
   }
 
   public remove() {

@@ -11,8 +11,6 @@ namespace BusinessLayer.Services
     {
         public IBoardRepository BoardRepository { get; set; }
 
-        public IUserBoardRepository UserBoardRepository { get; set; }
-
         public BoardService(IRepository<Board> repo, IBoardRepository customRepo): base(repo)
         {
             BoardRepository = customRepo;
@@ -28,6 +26,13 @@ namespace BusinessLayer.Services
             board.Created = DateTime.Now;
 
             await Add(board);
+
+            return board;
+        }
+
+        public async Task<Board> EditBoard(Board board)
+        {
+            await Change(board);
 
             return board;
         }

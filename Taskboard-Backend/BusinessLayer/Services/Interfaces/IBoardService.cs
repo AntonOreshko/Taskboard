@@ -12,5 +12,7 @@ namespace BusinessLayer.Services.Interfaces
         Task<IEnumerable<Board>> GetAllBoardsByUserId(long userId);
 
         Task<Board> CreateBoard(Board board);
+
+        Task<Board> EditBoard(Board board);
     }
 }

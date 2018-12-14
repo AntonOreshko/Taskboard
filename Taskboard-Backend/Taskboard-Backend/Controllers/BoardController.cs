@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer.Services.Interfaces;
@@ -52,7 +51,44 @@ namespace WebApi.Controllers
 
             await _boardService.CreateBoard(board);
 
-            return Ok(board);
+            var boardReturnDto = _mapper.Map<BoardReturnDto>(board);
+
+            return Ok(boardReturnDto);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBoard(long id)
+        {
+            var board = await _boardService.Get(id);
+
+            if (board.CreatedById != this.GetUserId())
+            {
+                return Unauthorized();
+            }
+
+            var boardReturnDto = _mapper.Map<BoardReturnDto>(board);
+
+            return Ok(boardReturnDto);
+        }
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> UpdateBoard(long id, BoardCreateDto boardCreateDto)
+        {
+            var board = await _boardService.Get(id);
+
+            if (board.CreatedById != this.GetUserId())
+            {
+                return Unauthorized();
+            }
+
+            board.Name = boardCreateDto.Name;
+            board.Description = boardCreateDto.Description;
+
+            board = await _boardService.EditBoard(board);
+
+            var boardReturnDto = _mapper.Map<BoardReturnDto>(board);
+
+            return Ok(boardReturnDto);
+        }
+
     }
 }

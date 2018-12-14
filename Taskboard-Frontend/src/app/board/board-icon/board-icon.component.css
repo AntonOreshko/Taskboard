@@ -3,13 +3,16 @@
 }
 
 .board-icon {
-    min-width: 250px;
+    min-width: 280px;
+    max-width: 280px;
 }
 
 .board-name {
     min-height: 30px;
+    max-height: 30px;
 }
 
 .board-description {
     min-height: 40px;
+    max-height: 40px;
 }

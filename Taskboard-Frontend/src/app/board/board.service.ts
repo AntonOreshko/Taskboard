@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../core/http.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Board } from './interfaces/board';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { BoardNewData } from './interfaces/board-new-data';
+import { BoardEditData } from './interfaces/board-edit-data';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,7 @@ import { BoardNewData } from './interfaces/board-new-data';
 export class BoardService extends HttpService {
 
   constructor(private _httpClient: HttpClient,
-              private _authService: AuthService,
-              private _router: Router) {
+              private _authService: AuthService) {
     super();
   }
 
@@ -28,10 +27,33 @@ export class BoardService extends HttpService {
   }
 
   public getBoards(): Observable<Board[]> {
-    return this._httpClient.get<Board[]>(this._baseUrl + 'api/board/list', { headers : this.getHeaders() });
+    return this._httpClient.get<Board[]>(
+      this._baseUrl + 'api/board/list',
+      { headers : this.getHeaders() }
+    );
   }
 
   public newBoard(newBoard: BoardNewData): Observable<Board> {
-    return this._httpClient.post<Board>(this._baseUrl + 'api/board/add', newBoard, { headers : this.getHeaders() });
+    return this._httpClient.post<Board>(
+      this._baseUrl + 'api/board/add',
+      newBoard,
+      { headers : this.getHeaders() }
+    );
   }
+
+  public getBoard(id: number): Observable<Board> {
+    return this._httpClient.get<Board>(
+      this._baseUrl + 'api/board/' + id,
+      { headers : this.getHeaders() }
+    );
+  }
+
+  public editBoard(id: number, editBoard: BoardEditData): Observable<Board> {
+    return this._httpClient.put<Board>(
+      this._baseUrl + 'api/board/edit/' + id,
+      editBoard,
+      { headers : this.getHeaders() }
+    );
+  }
+
 }
