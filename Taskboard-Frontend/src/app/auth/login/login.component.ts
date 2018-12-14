@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.getLoginData())
         .subscribe(
           response => {
-            this._router.navigate(['boards']);
+            this._router.navigate(['boards/list']);
           },
           error => {
 

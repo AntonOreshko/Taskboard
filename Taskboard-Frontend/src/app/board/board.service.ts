@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Board } from './interfaces/board';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { BoardNewData } from './interfaces/board-new-data';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class BoardService extends HttpService {
 
   public getBoards(): Observable<Board[]> {
     return this._httpClient.get<Board[]>(this._baseUrl + 'api/board/list', { headers : this.getHeaders() });
+  }
+
+  public newBoard(newBoard: BoardNewData): Observable<Board> {
+    return this._httpClient.post<Board>(this._baseUrl + 'api/board/add', newBoard, { headers : this.getHeaders() });
   }
 }

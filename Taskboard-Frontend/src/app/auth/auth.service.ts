@@ -51,7 +51,7 @@ export class AuthService extends HttpService {
   }
 
   public isAuthenticated(): boolean {
-    return this._token !== null;
+    return this.getToken() !== null;
   }
 
   public getToken(): string {

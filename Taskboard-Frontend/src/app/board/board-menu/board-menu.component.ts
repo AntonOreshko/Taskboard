@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-menu',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
+
+  public newBoard() {
+    this._router.navigate(['boards/new']);
+  }
 
   ngOnInit() {
   }
