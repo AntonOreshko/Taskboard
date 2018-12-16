@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BoardListComponent } from './board-list/board-list.component';
-import { BoardComponent } from './board/board.component';
+
 import { BoardDetailsComponent } from './board-details/board-details.component';
+import { BoardsPageComponent } from './boards-page/boards-page.component';
+import { BoardListComponent } from './board-list/board-list.component';
 
 const routes: Routes = [
-  { path: 'boards', component: BoardComponent, children:
+  { path: 'boards', component: BoardsPageComponent, children:
     [
       { path: 'list', component: BoardListComponent },
       { path: 'new', component: BoardDetailsComponent },

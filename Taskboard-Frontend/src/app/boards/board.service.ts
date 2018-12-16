@@ -26,15 +26,15 @@ export class BoardService extends HttpService {
               private _authService: AuthService) {
     super();
 
-    this.boardCreated = Observable.create(observer => {
+    this.boardCreated = Observable.create((observer: Observer<Board>) => {
       this._boardCreatedObserver = observer;
     }).pipe(share());
 
-    this.boardChanged = Observable.create(observer => {
+    this.boardChanged = Observable.create((observer: Observer<Board>) => {
       this._boardChangedObserver = observer;
     }).pipe(share());
 
-    this.boardDeleted = Observable.create(observer => {
+    this.boardDeleted = Observable.create((observer: Observer<boolean>) => {
       this._boardDeletedObserver = observer;
     }).pipe(share());
   }

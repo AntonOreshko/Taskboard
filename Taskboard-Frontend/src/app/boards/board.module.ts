@@ -4,19 +4,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BoardRoutingModule } from './board-routing.module';
 
-import { BoardListComponent } from './board-list/board-list.component';
 import { BoardMenuComponent } from './board-menu/board-menu.component';
 import { BoardIconComponent } from './board-icon/board-icon.component';
 import { BoardDetailsComponent } from './board-details/board-details.component';
-import { BoardComponent } from './board/board.component';
+import { BoardsPageComponent } from './boards-page/boards-page.component';
+import { BoardListComponent } from './board-list/board-list.component';
+
 
 @NgModule({
   declarations: [
-    BoardListComponent,
+    BoardsPageComponent,
     BoardMenuComponent,
     BoardIconComponent,
     BoardDetailsComponent,
-    BoardComponent
+    BoardListComponent
   ],
   imports: [
     CommonModule,
@@ -26,11 +27,11 @@ import { BoardComponent } from './board/board.component';
     BoardRoutingModule
   ],
   exports: [
-    BoardListComponent,
+    BoardsPageComponent,
     BoardMenuComponent,
     BoardIconComponent,
     BoardDetailsComponent,
-    BoardComponent
+    BoardListComponent
   ]
 })
 export class BoardModule { }
