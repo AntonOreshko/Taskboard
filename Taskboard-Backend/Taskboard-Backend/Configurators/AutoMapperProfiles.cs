@@ -12,9 +12,23 @@ namespace WebApi.Configurators
 
             CreateMap<User, UserReturnDto>();
 
-            CreateMap<BoardReturnDto, Board>();
+            CreateMap<BoardCreateDto, Board>();
 
-            CreateMap<Board, BoardCreateDto>();
+            CreateMap<BoardEditDto, Board>();
+
+            CreateMap<Board, BoardReturnDto>();
+
+            CreateMap<TaskCreateDto, Task>();
+
+            CreateMap<TaskEditDto, Task>();
+
+            CreateMap<Task, TaskReturnDto>();
+
+            CreateMap<NoteCreateDto, Note>();
+
+            CreateMap<NoteEditDto, Note>();
+
+            CreateMap<Note, NoteReturnDto>();
         }
     }
 }

@@ -15,13 +15,7 @@ namespace RepositoryLayer.EntityFramework
 
         protected readonly DbSet<T> Entities;
 
-        public IQueryable<T> Source
-        {
-            get
-            {
-                return Entities;
-            }
-        }
+        public IQueryable<T> Source => Entities;
 
         public EfRepository(TaskboardContext context)
         {

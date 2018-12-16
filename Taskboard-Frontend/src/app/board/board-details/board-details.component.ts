@@ -75,7 +75,7 @@ export class BoardDetailsComponent implements OnInit {
   }
 
   public editBoard() {
-    this._boardService.editBoard(this._boardId, this.getBoardEditData())
+    this._boardService.editBoard(this.getBoardEditData())
     .subscribe(
       response => {
         this._router.navigate(['boards/list']);
@@ -99,6 +99,7 @@ export class BoardDetailsComponent implements OnInit {
 
   public getBoardEditData(): BoardEditData {
     return {
+      id: this._boardId,
       name: this.boardDetailsForm.controls['name'].value,
       description: this.boardDetailsForm.controls['description'].value
     };

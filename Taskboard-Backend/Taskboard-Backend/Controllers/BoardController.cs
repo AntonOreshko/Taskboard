@@ -37,25 +37,6 @@ namespace WebApi.Controllers
             return Ok(boardsToReturn);
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddBoard(BoardCreateDto boardCreateDto)
-        {
-            var userId = this.GetUserId();
-
-            var board = new Board
-            {
-                CreatedById = userId,
-                Name = boardCreateDto.Name,
-                Description = boardCreateDto.Description
-            };
-
-            await _boardService.CreateBoard(board);
-
-            var boardReturnDto = _mapper.Map<BoardReturnDto>(board);
-
-            return Ok(boardReturnDto);
-        }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBoard(long id)
         {
@@ -70,18 +51,34 @@ namespace WebApi.Controllers
 
             return Ok(boardReturnDto);
         }
-        [HttpPut("edit/{id}")]
-        public async Task<IActionResult> UpdateBoard(long id, BoardCreateDto boardCreateDto)
+
+        [HttpPost("add")]
+        public async Task<IActionResult> AddBoard(BoardCreateDto boardCreateDto)
         {
-            var board = await _boardService.Get(id);
+            var userId = this.GetUserId();
+
+            var board = _mapper.Map<Board>(boardCreateDto);
+            board.CreatedById = userId;
+
+            await _boardService.CreateBoard(board);
+
+            var boardReturnDto = _mapper.Map<BoardReturnDto>(board);
+
+            return Ok(boardReturnDto);
+        }
+
+        [HttpPut("edit")]
+        public async Task<IActionResult> EditBoard(BoardEditDto boardEditDto)
+        {
+            var board = await _boardService.Get(boardEditDto.Id);
 
             if (board.CreatedById != this.GetUserId())
             {
                 return Unauthorized();
             }
 
-            board.Name = boardCreateDto.Name;
-            board.Description = boardCreateDto.Description;
+            board.Name = boardEditDto.Name;
+            board.Description = boardEditDto.Description;
 
             board = await _boardService.EditBoard(board);
 

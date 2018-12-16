@@ -77,9 +77,9 @@ export class BoardService extends HttpService {
     );
   }
 
-  public editBoard(id: number, editBoard: BoardEditData): Observable<Board> {
+  public editBoard(editBoard: BoardEditData): Observable<Board> {
     return this._httpClient.put<Board>(
-      this._baseUrl + 'api/board/edit/' + id,
+      this._baseUrl + 'api/board/edit/',
       editBoard,
       { headers : this.getHeaders() }
     ).pipe(
