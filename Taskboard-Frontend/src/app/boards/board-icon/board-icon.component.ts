@@ -29,9 +29,12 @@ export class BoardIconComponent implements OnInit {
   }
 
   public remove() {
-    this._boardService.deleteBoard(this.board.id)
-      .subscribe(response => {
-        console.log(response);
-      });
+    this._boardService.deleteBoard(this.board.id).subscribe(
+      this.onBoardRemoved.bind(this)
+    );
+  }
+
+  private onBoardRemoved(result: boolean): any {
+    console.log(result);
   }
 }

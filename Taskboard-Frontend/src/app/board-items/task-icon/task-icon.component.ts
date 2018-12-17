@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../interfaces/task';
 import { BoardIcon } from '../interfaces/board-icon';
+import { Router } from '@angular/router';
+import { BoardItemsService } from '../board-items.service';
 
 @Component({
   selector: 'app-task-icon',
@@ -9,10 +11,10 @@ import { BoardIcon } from '../interfaces/board-icon';
 })
 export class TaskIconComponent implements OnInit, BoardIcon {
 
-  item: Task;
+  public item: Task;
 
-  constructor() {
-   }
+  constructor(private _router: Router,
+              private _boardItemsService: BoardItemsService) { }
 
   ngOnInit() {
   }
@@ -22,10 +24,16 @@ export class TaskIconComponent implements OnInit, BoardIcon {
   }
 
   public edit() {
-
+    this._router.navigate(['boarditems/' + this.item.boardId + '/edit/task/' + this.item.id]);
   }
 
   public remove() {
+    this._boardItemsService.deleteTask(this.item.id).subscribe(
+      this.onTaskRemoved.bind(this)
+    );
+  }
 
+  private onTaskRemoved(result: boolean) {
+    console.log(result);
   }
 }
