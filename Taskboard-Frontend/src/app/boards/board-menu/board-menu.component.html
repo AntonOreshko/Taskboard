@@ -1,3 +1,10 @@
-<div class="col-1">
-    <button class="btn btn-outline-success btn-lg my-2 my-sm-0 ml-2" (click)="newBoard()">New Board</button>
+<div class="col-12">
+   <form class="form-inline">
+        <button type="button" class="btn btn-outline-success btn-lg ml-2 mr-3" (click)="newBoard()">New Board</button>
+        <input  
+            type="search" 
+            class="form-control form-control-lg mr-3" 
+            (input)="onSearchChange($event.target.value)"
+            placeholder="Search">
+    </form>
 </div>

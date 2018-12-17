@@ -17,4 +17,7 @@ export class BoardMenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onSearchChange(value: string) {
+    console.log(value);
+  }
 }
