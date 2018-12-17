@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { BoardModule } from './boards/board.module';
+import { BoardItemsModule } from './board-items/board-items.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BoardModule } from './boards/board.module';
     CoreModule,
     AuthModule,
     BoardModule,
+    BoardItemsModule,
     AppRoutingModule,
   ],
   providers: [],

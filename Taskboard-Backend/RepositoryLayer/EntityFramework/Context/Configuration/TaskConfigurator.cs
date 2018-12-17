@@ -26,7 +26,7 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
 
             builder.Property(e => e.CompletedById)
                 .HasColumnName("COMPLETED_BY")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(e => e.Name)
                 .HasColumnName("NAME")

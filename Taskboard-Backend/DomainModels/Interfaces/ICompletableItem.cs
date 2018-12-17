@@ -6,7 +6,7 @@ namespace DomainModels.Interfaces
     {
         bool Completed { get; set; }
 
-        long CompletedById { get; set; }
+        long? CompletedById { get; set; }
 
         User CompletedBy { get; set; }
     }

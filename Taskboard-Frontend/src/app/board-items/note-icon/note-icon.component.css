@@ -1,0 +1,19 @@
+.btn-width {
+    min-width: 70px !important;
+}
+
+.note-icon {
+    min-width: 280px;
+    max-width: 280px;
+    background-color: lightcyan;
+}
+
+.note-name {
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.note-description {
+    min-height: 60px;
+    max-height: 60px;
+}

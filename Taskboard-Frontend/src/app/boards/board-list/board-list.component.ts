@@ -21,13 +21,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
     this._subscriptions.push(this._boardService.boardDeleted.subscribe(this.onBoardDeleted.bind(this)));
 
     this._boardService.getBoards().subscribe(
-      boards => {
-        this.boards = boards;
-        console.log(this.boards);
-      },
-      error => {
-
-      }
+      this.onGetBoardsList.bind(this)
     );
   }
 
@@ -37,15 +31,14 @@ export class BoardListComponent implements OnInit, OnDestroy {
     });
   }
 
+  private onGetBoardsList(boards: Board[]) {
+    this.boards = boards;
+    console.log(this.boards);
+  }
+
   private onBoardDeleted(result: boolean) {
     this._boardService.getBoards().subscribe(
-      boards => {
-        this.boards = boards;
-        console.log(this.boards);
-      },
-      error => {
-
-      }
+      this.onGetBoardsList.bind(this)
     );
   }
 }

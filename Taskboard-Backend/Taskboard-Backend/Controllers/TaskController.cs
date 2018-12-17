@@ -25,7 +25,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("list")]
+        [HttpGet("list/{boardId}")]
         public async Task<IActionResult> GetTasks(long boardId)
         {
             var userId = this.GetUserId();

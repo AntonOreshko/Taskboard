@@ -1,0 +1,19 @@
+.btn-width {
+    min-width: 70px !important;
+}
+
+.task-icon {
+    min-width: 280px;
+    max-width: 280px;
+    background-color: lightgoldenrodyellow;
+}
+
+.task-name {
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.task-description {
+    min-height: 60px;
+    max-height: 60px;
+}

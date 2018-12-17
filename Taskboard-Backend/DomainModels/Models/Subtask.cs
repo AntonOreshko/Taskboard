@@ -15,7 +15,7 @@ namespace DomainModels.Models
 
         public bool Completed { get; set; }
 
-        public long CompletedById { get; set; }
+        public long? CompletedById { get; set; }
 
         public User CompletedBy { get; set; }
 

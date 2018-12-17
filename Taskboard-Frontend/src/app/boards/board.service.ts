@@ -55,6 +55,13 @@ export class BoardService extends HttpService {
     );
   }
 
+  public getBoard(id: number): Observable<Board> {
+    return this._httpClient.get<Board>(
+      this._baseUrl + 'api/board/' + id,
+      { headers : this.getHeaders() }
+    );
+  }
+
   public newBoard(newBoard: BoardNewData): Observable<Board> {
     return this._httpClient.post<Board>(
       this._baseUrl + 'api/board/add',
@@ -67,13 +74,6 @@ export class BoardService extends HttpService {
         }
         return board;
       })
-    );
-  }
-
-  public getBoard(id: number): Observable<Board> {
-    return this._httpClient.get<Board>(
-      this._baseUrl + 'api/board/' + id,
-      { headers : this.getHeaders() }
     );
   }
 

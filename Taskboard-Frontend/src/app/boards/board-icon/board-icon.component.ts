@@ -21,11 +21,11 @@ export class BoardIconComponent implements OnInit {
   }
 
   public open() {
-
+    this._router.navigate(['boarditems', this.board.id, 'list']);
   }
 
   public edit() {
-    this._router.navigate(['boards/edit/' + this.board.id]);
+    this._router.navigate(['boards/edit', this.board.id]);
   }
 
   public remove() {
