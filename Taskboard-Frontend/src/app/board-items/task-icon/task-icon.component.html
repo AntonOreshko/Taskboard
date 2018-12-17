@@ -3,7 +3,7 @@
     <div class="card-body task-icon">
       <h3 class="card-title text-truncate task-name ">{{ item.name }}</h3>
       <div class="card-text text-truncate task-description">{{ item.description }}</div>
-      <button (click)="open()" class="btn btn-outline-primary my-2 my-sm-0 mr-2 btn-width">Open</button>
+      <button disabled (click)="open()" class="btn btn-outline-primary my-2 my-sm-0 mr-2 btn-width">Open</button>
       <button (click)="edit()" class="btn btn-outline-warning my-2 my-sm-0 mr-2 btn-width">Edit</button>
       <button (click)="remove()" class="btn btn-outline-danger my-2 my-sm-0 btn-width">Remove</button>
     </div>
