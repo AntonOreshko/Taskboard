@@ -15,6 +15,8 @@ using RepositoryLayer.EntityFramework.Context;
 using RepositoryLayer.Repository;
 using System.Text;
 using AutoMapper;
+using BusinessLayer.Services.Interfaces.Mail;
+using BusinessLayer.Services.Mail;
 
 namespace WebApi
 {
@@ -64,6 +66,9 @@ namespace WebApi
                         ValidateAudience = false,
                     };
                 });
+
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
 
         }
 

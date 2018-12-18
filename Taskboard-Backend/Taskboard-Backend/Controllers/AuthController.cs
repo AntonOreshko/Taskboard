@@ -9,6 +9,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Services.Interfaces.Mail;
+using BusinessLayer.Services.Mail;
 using WebApi.Dto;
 
 namespace WebApi.Controllers
@@ -23,11 +25,14 @@ namespace WebApi.Controllers
 
         private readonly IMapper _mapper;
 
-        public AuthController(IUserService userService, IConfiguration configuration, IMapper mapper)
+        private readonly IEmailService _emailService;
+
+        public AuthController(IUserService userService, IConfiguration configuration, IMapper mapper, IEmailService emailService)
         {
             _userService = userService;
             _configuration = configuration;
             _mapper = mapper;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -82,6 +87,24 @@ namespace WebApi.Controllers
 
             var userDto = _mapper.Map<UserReturnDto>(user);
 
+            // email sending
+            var emailMessage = new EmailMessage();
+            emailMessage.FromAddresses.Add(new EmailAddress
+            {
+                Address = "araxis.games@gmail.com",
+                Name = "Araxis Games"
+            });
+            emailMessage.ToAddresses.Add(new EmailAddress
+            {
+                Address = userDto.Email,
+                Name = userDto.FullName
+            });
+            emailMessage.Subject = "Login on Taskboard!";
+            emailMessage.Content = "Login on Taskboard was performed by user " + userDto.Email + "!";
+
+            await _emailService.SendAsync(emailMessage);
+
+            // return result
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token),
