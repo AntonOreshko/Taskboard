@@ -1,3 +1,7 @@
 export enum BoardItemsToShow {
-    All, Tasks, Notes, Completed, Incomplete
+    All,
+    Tasks,
+    Notes,
+    Completed,
+    Incomplete
 }

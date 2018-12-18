@@ -47,20 +47,24 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
       this._boardItemsService.noteDeleted.subscribe(this.onNoteDeleted.bind(this))
     );
 
-    this._subscriptions.push(this._boardItemsFilterService.filterChanged.subscribe(
-      this.onFilterChanged.bind(this))
+    this._subscriptions.push(this._boardItemsFilterService.textFilterChanged.subscribe(
+      this.onTextFilterChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardItemsFilterService.placeToSearchChanged.subscribe(
-      this.onPlaceToSearchChanged.bind(this))
+    this._subscriptions.push(this._boardItemsFilterService.placeToSearchFilterChanged.subscribe(
+      this.onPlaceToSearchFilterChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardItemsFilterService.displayOrderChanged.subscribe(
-      this.onDisplayOrderChanged.bind(this))
+    this._subscriptions.push(this._boardItemsFilterService.displayOrderFilterChanged.subscribe(
+      this.onDisplayOrderFilterChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardItemsFilterService.displaySizeChanged.subscribe(
-      this.onDisplaySizeChanged.bind(this))
+    this._subscriptions.push(this._boardItemsFilterService.displaySizeFilterChanged.subscribe(
+      this.onDisplaySizeFilterChanged.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.boardItemsToShowFilterChanged.subscribe(
+      this.onBoardItemsToShowFilterChanged.bind(this))
     );
 
     this._boardItemsService.getTasks(this._boardId).subscribe(
@@ -129,23 +133,23 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
     };
   }
 
-  private onFilterChanged(value: string) {
+  private onTextFilterChanged(value: string) {
     this.setDisplayItems();
   }
 
-  private onPlaceToSearchChanged(value: PlaceToSearch) {
+  private onPlaceToSearchFilterChanged(value: PlaceToSearch) {
     this.setDisplayItems();
   }
 
-  private onDisplayOrderChanged(value: DisplayOrder) {
+  private onDisplayOrderFilterChanged(value: DisplayOrder) {
     this.setDisplayItems();
   }
 
-  private onDisplaySizeChanged(value: DisplaySize) {
+  private onDisplaySizeFilterChanged(value: DisplaySize) {
     this.setDisplayItems();
   }
 
-  private onBoardItemToShowChanged(value: BoardItemsToShow) {
+  private onBoardItemsToShowFilterChanged(value: BoardItemsToShow) {
     this.setDisplayItems();
   }
 }

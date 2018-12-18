@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BoardItemsFilterService } from '../board-items-filter.service';
+import { PlaceToSearch } from 'src/app/core/enums/PlaceToSearch';
+import { DisplayOrder } from 'src/app/core/enums/DisplayOrder';
+import { DisplaySize } from 'src/app/core/enums/DisplaySize';
+import { BoardItemsToShow } from 'src/app/core/enums/BoardItemsToShow';
 
 @Component({
   selector: 'app-board-items-menu',
@@ -12,6 +16,14 @@ export class BoardItemsMenuComponent implements OnInit {
   private _boardId: number;
 
   public textFilter: string;
+
+  public placeToSearchFilter: PlaceToSearch;
+
+  public displayOrderFilter: DisplayOrder;
+
+  public displaySizeFilter: DisplaySize;
+
+  public boardItemsToShowFilter: BoardItemsToShow;
 
   constructor(private _router: Router,
               private _activeRoute: ActivatedRoute,
@@ -35,11 +47,35 @@ export class BoardItemsMenuComponent implements OnInit {
   }
 
   private applyFilterValues() {
-    this.textFilter = this._boardItemsFilterService.filter;
+    this.textFilter = this._boardItemsFilterService.textFilter;
+    this.placeToSearchFilter = this._boardItemsFilterService.placeToSearchFilter;
+    this.displayOrderFilter = this._boardItemsFilterService.displayOrderFilter;
+    this.displaySizeFilter = this._boardItemsFilterService.displaySizeFilter;
+    this.boardItemsToShowFilter = this._boardItemsFilterService.boardItemsToShowFilter;
   }
 
-  public onSearchChange(value: string) {
+  public textFilterChange(value: string) {
     console.log(value);
     this._boardItemsFilterService.onFilterChanged(value);
+  }
+
+  public placeToSearchChanged(value: string) {
+    console.log(value);
+    this._boardItemsFilterService.onPlaceToSearchChanged(PlaceToSearch[value]);
+  }
+
+  public displayOrderChanged(value: string) {
+    console.log(value);
+    this._boardItemsFilterService.onDisplayOrderChanged(DisplayOrder[value]);
+  }
+
+  public displaySizeChanged(value: string) {
+    console.log(value);
+    this._boardItemsFilterService.onDisplaySizeChanged(DisplaySize[value]);
+  }
+
+  public boardItemsToShowChanged(value: string) {
+    console.log(value);
+    this._boardItemsFilterService.onBoardItemsToShowChanged(BoardItemsToShow[value]);
   }
 }

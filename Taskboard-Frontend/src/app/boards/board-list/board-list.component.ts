@@ -29,19 +29,19 @@ export class BoardListComponent implements OnInit, OnDestroy {
       this.onBoardDeleted.bind(this))
     );
 
-    this._subscriptions.push(this._boardFilterService.filterChanged.subscribe(
-      this.onFilterChanged.bind(this))
+    this._subscriptions.push(this._boardFilterService.textFilterChanged.subscribe(
+      this.onTextFilterChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardFilterService.placeToSearchChanged.subscribe(
+    this._subscriptions.push(this._boardFilterService.placeToSearchFilterChanged.subscribe(
       this.onPlaceToSearchChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardFilterService.displayOrderChanged.subscribe(
+    this._subscriptions.push(this._boardFilterService.displayOrderFilterChanged.subscribe(
       this.onDisplayOrderChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardFilterService.displaySizeChanged.subscribe(
+    this._subscriptions.push(this._boardFilterService.displaySizeFilterChanged.subscribe(
       this.onDisplaySizeChanged.bind(this))
     );
 
@@ -81,7 +81,7 @@ export class BoardListComponent implements OnInit, OnDestroy {
     this.displayBoards = this.displayBoards.sort(this._boardFilterService.getDisplayOrderFunc());
   }
 
-  private onFilterChanged(value: string) {
+  private onTextFilterChanged(value: string) {
     this.setDisplayBoards();
   }
 

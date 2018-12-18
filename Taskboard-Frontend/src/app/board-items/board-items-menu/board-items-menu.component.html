@@ -1,23 +1,63 @@
 <div class="col-12">
-  <form class="form-inline">
-    <button 
-      type="button"
-      class="btn btn-outline-success btn-lg ml-2 mr-3" 
-      (click)="newTask()">New Task</button>
-    <button
-      type="button"
-      class="btn btn-outline-success btn-lg mr-3" 
-      (click)="newNote()">New Note</button>
-    <input  
-      type="search" 
-      class="form-control form-control-lg mr-3" 
-      (input)="onSearchChange($event.target.value)"
-      placeholder="Search"            
-      [(ngModel)]="textFilter" 
-      name = "textFilter">    
-    <button
-      type="button"
-      class="btn btn-outline-warning btn-lg mr-3" 
-      (click)="back()">Back</button>
-  </form>
+    <form class="form-inline">
+        <button 
+            type="button"
+            class="btn btn-outline-success btn-lg ml-2 mr-3" 
+            (click)="newTask()">New Task</button>
+        <button
+            type="button"
+            class="btn btn-outline-success btn-lg mr-3" 
+            (click)="newNote()">New Note</button>
+        <input  
+            type="search" 
+            class="form-control form-control-lg mr-3" 
+            (input)="textFilterChange($event.target.value)"
+            placeholder="Search"            
+            [(ngModel)]="textFilter" 
+            name = "textFilter">
+        <select 
+            class="custom-select custom-select-lg form-control filter-select mr-3"
+            name="placeToSearchFilter"
+            [selectedIndex]="placeToSearchFilter"
+            (change)="placeToSearchChanged($event.target.value)">            
+            <option value="Everywhere">Everywhere</option>
+            <option value="Name">Names</option>
+            <option value="Description">Descriptions</option>
+        </select>
+        <select 
+            class="custom-select custom-select-lg form-control filter-select mr-3"
+            name="displayOrderFilter"
+            [selectedIndex]="displayOrderFilter"
+            (change)="displayOrderChanged($event.target.value)">            
+            <option value="ByCreationDate_ASC">By Date ASC</option>
+            <option value="ByCreationDate_DESC">By Date DESC</option>
+            <option value="ByName_ASC">Name ASC</option>
+            <option value="ByName_DESC">Name DESC</option>
+        </select>
+        <select
+            hidden
+            class="custom-select custom-select-lg form-control filter-select mr-3"
+            name="displaySizeFilter"
+            [selectedIndex]="displaySizeFilter"
+            (change)="displaySizeChanged($event.target.value)">            
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        <select
+            class="custom-select custom-select-lg form-control filter-select mr-3"
+            name="displaySizeFilter"
+            [selectedIndex]="boardItemsToShowFilter"
+            (change)="boardItemsToShowChanged($event.target.value)">            
+            <option value="All">All</option>
+            <option value="Tasks">Tasks</option>
+            <option value="Notes">Notes</option>
+            <option value="Completed">Completed</option>
+            <option value="Incomplete">Incompleted</option>
+        </select>
+        <button
+            type="button"
+            class="btn btn-outline-warning btn-lg mr-3" 
+            (click)="back()">Back</button>
+    </form>
 </div>

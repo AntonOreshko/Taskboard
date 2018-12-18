@@ -7,77 +7,77 @@ import { BoardItem } from '../board-items/interfaces/board-item';
 
 export class FilterService {
 
-  public filter: string;
+  public textFilter: string;
 
-  public placeToSearch: PlaceToSearch = PlaceToSearch.Everywhere;
+  public placeToSearchFilter: PlaceToSearch = PlaceToSearch.Everywhere;
 
-  public displayOrder: DisplayOrder = DisplayOrder.ByCreationDate_ASC;
+  public displayOrderFilter: DisplayOrder = DisplayOrder.ByCreationDate_ASC;
 
-  public displaySize: DisplaySize = DisplaySize.Medium;
+  public displaySizeFilter: DisplaySize = DisplaySize.Medium;
 
-  public filterChanged: Observable<string>;
-  protected _filterChangedObserver: Observer<string>;
+  public textFilterChanged: Observable<string>;
+  protected _textFilterChangedObserver: Observer<string>;
 
-  public placeToSearchChanged: Observable<PlaceToSearch>;
-  protected _placeToSearchChangedObserver: Observer<PlaceToSearch>;
+  public placeToSearchFilterChanged: Observable<PlaceToSearch>;
+  protected _placeToSearchFilterChangedObserver: Observer<PlaceToSearch>;
 
-  public displayOrderChanged: Observable<DisplayOrder>;
-  protected _displayOrderChangeObserver: Observer<DisplayOrder>;
+  public displayOrderFilterChanged: Observable<DisplayOrder>;
+  protected _displayOrderFilterChangeObserver: Observer<DisplayOrder>;
 
-  public displaySizeChanged: Observable<DisplaySize>;
-  protected _displaySizeChangedObserver: Observer<DisplaySize>;
+  public displaySizeFilterChanged: Observable<DisplaySize>;
+  protected _displaySizeFilterChangedObserver: Observer<DisplaySize>;
 
   constructor() {
 
-    this.filter = '';
+    this.textFilter = '';
 
-    this.filterChanged = Observable.create((observer: Observer<string>) => {
-      this._filterChangedObserver = observer;
+    this.textFilterChanged = Observable.create((observer: Observer<string>) => {
+      this._textFilterChangedObserver = observer;
     }).pipe(share());
 
-    this.placeToSearchChanged = Observable.create((observer: Observer<PlaceToSearch>) => {
-      this._placeToSearchChangedObserver = observer;
+    this.placeToSearchFilterChanged = Observable.create((observer: Observer<PlaceToSearch>) => {
+      this._placeToSearchFilterChangedObserver = observer;
     }).pipe(share());
 
-    this.displayOrderChanged = Observable.create((observer: Observer<DisplayOrder>) => {
-      this._displayOrderChangeObserver = observer;
+    this.displayOrderFilterChanged = Observable.create((observer: Observer<DisplayOrder>) => {
+      this._displayOrderFilterChangeObserver = observer;
     }).pipe(share());
 
-    this.displaySizeChanged = Observable.create((observer: Observer<DisplaySize>) => {
-      this._displaySizeChangedObserver = observer;
+    this.displaySizeFilterChanged = Observable.create((observer: Observer<DisplaySize>) => {
+      this._displaySizeFilterChangedObserver = observer;
     }).pipe(share());
   }
 
   public onFilterChanged(filter: string) {
-    this.filter = filter;
-    if (this._filterChangedObserver !== undefined) {
-      this._filterChangedObserver.next(filter);
+    this.textFilter = filter;
+    if (this._textFilterChangedObserver !== undefined) {
+      this._textFilterChangedObserver.next(filter);
     }
   }
 
   public onPlaceToSearchChanged(placeToSearch: PlaceToSearch) {
-    this.placeToSearch = placeToSearch;
-    if (this._placeToSearchChangedObserver !== undefined) {
-      this._placeToSearchChangedObserver.next(placeToSearch);
+    this.placeToSearchFilter = placeToSearch;
+    if (this._placeToSearchFilterChangedObserver !== undefined) {
+      this._placeToSearchFilterChangedObserver.next(placeToSearch);
     }
   }
 
   public onDisplayOrderChanged(displayOrder: DisplayOrder) {
-    this.displayOrder = displayOrder;
-    if (this._displayOrderChangeObserver !== undefined) {
-      this._displayOrderChangeObserver.next(displayOrder);
+    this.displayOrderFilter = displayOrder;
+    if (this._displayOrderFilterChangeObserver !== undefined) {
+      this._displayOrderFilterChangeObserver.next(displayOrder);
     }
   }
 
   public onDisplaySizeChanged(displaySize: DisplaySize) {
-    this.displaySize = displaySize;
-    if (this._displaySizeChangedObserver !== undefined) {
-      this._displaySizeChangedObserver.next(displaySize);
+    this.displaySizeFilter = displaySize;
+    if (this._displaySizeFilterChangedObserver !== undefined) {
+      this._displaySizeFilterChangedObserver.next(displaySize);
     }
   }
 
   public getDisplayOrderFunc() {
-    switch (this.displayOrder) {
+    switch (this.displayOrderFilter) {
       case DisplayOrder.ByCreationDate_ASC:
         return (i1: BoardItem, i2: BoardItem): number => {
           if (i1.created > i2.created) { return 1; }

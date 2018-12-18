@@ -9,13 +9,13 @@ import { PlaceToSearch } from '../core/enums/PlaceToSearch';
 export class BoardFilterService extends FilterService {
 
   public applyTextFilter(item: Board): boolean {
-    const nameContains = item.name.includes(this.filter);
+    const nameContains = item.name.includes(this.textFilter);
     let descriptionContains = false;
     if (item.description !== undefined && item.description !== null) {
-      descriptionContains = item.description.includes(this.filter);
+      descriptionContains = item.description.includes(this.textFilter);
     }
 
-    switch (this.placeToSearch) {
+    switch (this.placeToSearchFilter) {
       case PlaceToSearch.Everywhere:
         return nameContains || descriptionContains;
       case PlaceToSearch.Name:
@@ -27,7 +27,7 @@ export class BoardFilterService extends FilterService {
 
   public applyAllFilters(item: Board): boolean {
     let textFilterResult = true;
-    if (this.filter.length > 0) {
+    if (this.textFilter.length > 0) {
       textFilterResult = this.applyTextFilter(item);
     }
     return textFilterResult;
