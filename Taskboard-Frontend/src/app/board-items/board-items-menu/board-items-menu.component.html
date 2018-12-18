@@ -1,11 +1,18 @@
 <div class="col-12">
+    <form class="form-inline">
   <button 
-    class="btn btn-outline-success btn-lg my-2 my-sm-0 ml-2" 
+    class="btn btn-outline-success btn-lg ml-2 mr-3" 
     (click)="newTask()">New Task</button>
   <button 
-    class="btn btn-outline-success btn-lg my-2 my-sm-0 ml-2" 
+    class="btn btn-outline-success btn-lg mr-3" 
     (click)="newNote()">New Note</button>
+  <input  
+    type="search" 
+    class="form-control form-control-lg mr-3" 
+    (input)="onSearchChange($event.target.value)"
+    placeholder="Search">    
   <button
-    class="btn btn-outline-warning btn-lg my-2 my-sm-0 ml-2" 
+    class="btn btn-outline-warning btn-lg mr-3" 
     (click)="back()">Back</button>
+    </form>
 </div>

@@ -42,7 +42,7 @@ namespace WebApi
             services.AddDbContext<TaskboardContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("HomeConnection"),
+                    options.UseSqlServer(Configuration.GetConnectionString("WorkConnection"),
                         b => b.MigrationsAssembly("WebApi"));
                 });
 

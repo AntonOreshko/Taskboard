@@ -8,6 +8,11 @@ import { BoardItem } from '../interfaces/board-item';
 import { TaskIconComponent } from '../task-icon/task-icon.component';
 import { NoteIconComponent } from '../note-icon/note-icon.component';
 import { IconItemData } from '../interfaces/icon-item-data';
+import { BoardItemsFilterService } from '../board-items-filter.service';
+import { PlaceToSearch } from 'src/app/core/enums/PlaceToSearch';
+import { DisplayOrder } from 'src/app/core/enums/DisplayOrder';
+import { DisplaySize } from 'src/app/core/enums/DisplaySize';
+import { BoardItemsToShow } from 'src/app/core/enums/BoardItemsToShow';
 
 @Component({
   selector: 'app-board-items-list',
@@ -19,26 +24,43 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
   public tasks: Task[] = [];
   public notes: Note[] = [];
 
-  public items: BoardItem[];
+  private _items: BoardItem[] = [];
+  public displayItems: BoardItem[] = [];
 
   private _subscriptions: Subscription[] = [];
 
   private _boardId: number;
 
   constructor(private _boardItemsService: BoardItemsService,
-              private _activeRoute: ActivatedRoute) { }
+              private _activeRoute: ActivatedRoute,
+              private _boardItemsFilterService: BoardItemsFilterService) { }
 
   ngOnInit() {
 
     this._boardId = this._activeRoute.parent.snapshot.params['id'];
 
-    // subscribe on events
     this._subscriptions.push(
       this._boardItemsService.taskDeleted.subscribe(this.onTaskDeleted.bind(this))
     );
 
     this._subscriptions.push(
       this._boardItemsService.noteDeleted.subscribe(this.onNoteDeleted.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.filterChanged.subscribe(
+      this.onFilterChanged.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.placeToSearchChanged.subscribe(
+      this.onPlaceToSearchChanged.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.displayOrderChanged.subscribe(
+      this.onDisplayOrderChanged.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.displaySizeChanged.subscribe(
+      this.onDisplaySizeChanged.bind(this))
     );
 
     this._boardItemsService.getTasks(this._boardId).subscribe(
@@ -56,26 +78,30 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
     });
   }
 
-  private buildItemsList() {
-    this.items = [];
-    this.items.push(...this.tasks);
-    this.items.push(...this.notes);
-    this.items = this.items.sort((i1: BoardItem, i2: BoardItem) => {
-      if (i1.created > i2.created) { return 1; }
-      if (i2.created > i1.created) { return -1; }
-      return 0;
-    });
+  private setDisplayItems() {
+    this.displayItems = [];
+    this._items = [];
+    this._items.push(...this.tasks);
+    this._items.push(...this.notes);
+
+    for (let i = 0; i < this._items.length; i++) {
+      if (this._boardItemsFilterService.applyAllFilters(this._items[i])) {
+        this.displayItems.push(this._items[i]);
+      }
+    }
+
+    this.displayItems = this.displayItems.sort(this._boardItemsFilterService.getDisplayOrderFunc());
   }
 
   private onGetTasksList(tasks: Task[]) {
     this.tasks = tasks;
-    this.buildItemsList();
+    this.setDisplayItems();
     console.log(this.tasks);
   }
 
   private onGetNotesList(notes: Note[]) {
     this.notes = notes;
-    this.buildItemsList();
+    this.setDisplayItems();
     console.log(this.notes);
   }
 
@@ -101,5 +127,25 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
       component: this.getComponentByItem(item),
       iconItem: item
     };
+  }
+
+  private onFilterChanged(value: string) {
+    this.setDisplayItems();
+  }
+
+  private onPlaceToSearchChanged(value: PlaceToSearch) {
+    this.setDisplayItems();
+  }
+
+  private onDisplayOrderChanged(value: DisplayOrder) {
+    this.setDisplayItems();
+  }
+
+  private onDisplaySizeChanged(value: DisplaySize) {
+    this.setDisplayItems();
+  }
+
+  private onBoardItemToShowChanged(value: BoardItemsToShow) {
+    this.setDisplayItems();
   }
 }

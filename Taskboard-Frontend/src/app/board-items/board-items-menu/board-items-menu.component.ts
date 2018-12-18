@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BoardItemsFilterService } from '../board-items-filter.service';
 
 @Component({
   selector: 'app-board-items-menu',
@@ -11,7 +12,8 @@ export class BoardItemsMenuComponent implements OnInit {
   private _boardId: number;
 
   constructor(private _router: Router,
-              private _activeRoute: ActivatedRoute) { }
+              private _activeRoute: ActivatedRoute,
+              private _boardItemsFilterService: BoardItemsFilterService) { }
 
   ngOnInit() {
     this._boardId = this._activeRoute.parent.snapshot.params['id'];
@@ -27,5 +29,10 @@ export class BoardItemsMenuComponent implements OnInit {
 
   public back() {
     this._router.navigate(['boards/list']);
+  }
+
+  public onSearchChange(value: string) {
+    console.log(value);
+    this._boardItemsFilterService.onFilterChanged(value);
   }
 }
