@@ -36,6 +36,10 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
                 .WithOne(e => e.Board)
                 .HasForeignKey(e => e.BoardId);
 
+            builder.HasMany(e => e.Notes)
+                .WithOne(e => e.Board)
+                .HasForeignKey(e => e.BoardId);
+
             builder.HasOne(e => e.CreatedBy)
                 .WithMany()
                 .HasForeignKey(e => e.CreatedById)

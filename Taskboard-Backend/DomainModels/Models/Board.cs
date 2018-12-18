@@ -22,6 +22,6 @@ namespace DomainModels.Models
 
         public List<Task> Tasks { get; set; }
 
-        public List<Task> Notes { get; set; }
+        public List<Note> Notes { get; set; }
     }
 }

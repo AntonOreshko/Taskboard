@@ -18,5 +18,7 @@ namespace DomainModels.Models
         public string Description { get; set; }
 
         public long BoardId { get; set; }
+
+        public Board Board { get; set; }
     }
 }
