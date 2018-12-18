@@ -5,6 +5,8 @@
             type="search" 
             class="form-control form-control-lg mr-3" 
             (input)="onSearchChange($event.target.value)"
-            placeholder="Search">
+            placeholder="Search"
+            [(ngModel)]="textFilter" 
+            name = "textFilter">
     </form>
 </div>

@@ -11,12 +11,15 @@ export class BoardItemsMenuComponent implements OnInit {
 
   private _boardId: number;
 
+  public textFilter: string;
+
   constructor(private _router: Router,
               private _activeRoute: ActivatedRoute,
               private _boardItemsFilterService: BoardItemsFilterService) { }
 
   ngOnInit() {
     this._boardId = this._activeRoute.parent.snapshot.params['id'];
+    this.applyFilterValues();
   }
 
   public newTask() {
@@ -29,6 +32,10 @@ export class BoardItemsMenuComponent implements OnInit {
 
   public back() {
     this._router.navigate(['boards/list']);
+  }
+
+  private applyFilterValues() {
+    this.textFilter = this._boardItemsFilterService.filter;
   }
 
   public onSearchChange(value: string) {

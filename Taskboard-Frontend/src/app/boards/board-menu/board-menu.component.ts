@@ -9,6 +9,8 @@ import { BoardFilterService } from '../board-filter.service';
 })
 export class BoardMenuComponent implements OnInit {
 
+  public textFilter: string;
+
   constructor(private _router: Router,
               private _boardFilterService: BoardFilterService) { }
 
@@ -17,7 +19,11 @@ export class BoardMenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.applyFilterValues();
+  }
 
+  private applyFilterValues() {
+    this.textFilter = this._boardFilterService.filter;
   }
 
   public onSearchChange(value: string) {
