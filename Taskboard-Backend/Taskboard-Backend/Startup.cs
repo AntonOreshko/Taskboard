@@ -44,7 +44,7 @@ namespace WebApi
             services.AddDbContext<TaskboardContext>(
                 options =>
                 {
-                    options.UseSqlServer(Configuration.GetConnectionString("WorkConnection"),
+                    options.UseSqlServer(Configuration.GetConnectionString("HomeConnection"),
                         b => b.MigrationsAssembly("WebApi"));
                 });
 
@@ -66,10 +66,6 @@ namespace WebApi
                         ValidateAudience = false,
                     };
                 });
-
-            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
-            services.AddTransient<IEmailService, EmailService>();
-
         }
 
         public void ConfigureEfRepositories(IServiceCollection services)

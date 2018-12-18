@@ -25,14 +25,11 @@ namespace WebApi.Controllers
 
         private readonly IMapper _mapper;
 
-        private readonly IEmailService _emailService;
-
-        public AuthController(IUserService userService, IConfiguration configuration, IMapper mapper, IEmailService emailService)
+        public AuthController(IUserService userService, IConfiguration configuration, IMapper mapper)
         {
             _userService = userService;
             _configuration = configuration;
             _mapper = mapper;
-            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -86,23 +83,6 @@ namespace WebApi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             var userDto = _mapper.Map<UserReturnDto>(user);
-
-            // email sending
-            var emailMessage = new EmailMessage();
-            emailMessage.FromAddresses.Add(new EmailAddress
-            {
-                Address = "araxis.games@gmail.com",
-                Name = "Araxis Games"
-            });
-            emailMessage.ToAddresses.Add(new EmailAddress
-            {
-                Address = userDto.Email,
-                Name = userDto.FullName
-            });
-            emailMessage.Subject = "Login on Taskboard!";
-            emailMessage.Content = "Login on Taskboard was performed by user " + userDto.Email + "!";
-
-            await _emailService.SendAsync(emailMessage);
 
             // return result
             return Ok(new
