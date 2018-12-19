@@ -29,6 +29,12 @@ namespace WebApi.Configurators
             CreateMap<NoteEditDto, Note>();
 
             CreateMap<Note, NoteReturnDto>();
+
+            CreateMap<SubtaskCreateDto, Subtask>();
+
+            CreateMap<SubtaskEditDto, Subtask>();
+
+            CreateMap<Subtask, SubtaskReturnDto>();
         }
     }
 }

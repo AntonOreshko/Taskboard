@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer.Services.Interfaces;
 using DomainModels.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Dto;
 using WebApi.Extensions;
@@ -10,6 +11,7 @@ using WebApi.Extensions;
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class NoteController : ControllerBase
     {

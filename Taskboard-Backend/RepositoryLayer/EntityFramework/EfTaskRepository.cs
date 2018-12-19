@@ -16,7 +16,9 @@ namespace RepositoryLayer.EntityFramework
 
         public async System.Threading.Tasks.Task<IEnumerable<Task>> GetByBoard(long userId, long boardId)
         {
-            return await Entities.Where(t => t.BoardId == boardId && t.CreatedById == userId).ToListAsync();
+            return await Entities
+                .Where(t => t.BoardId == boardId && t.CreatedById == userId)
+                .ToListAsync();
         }
     }
 }

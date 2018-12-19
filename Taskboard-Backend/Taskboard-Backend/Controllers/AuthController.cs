@@ -9,8 +9,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessLayer.Services.Interfaces.Mail;
-using BusinessLayer.Services.Mail;
 using WebApi.Dto;
 
 namespace WebApi.Controllers
