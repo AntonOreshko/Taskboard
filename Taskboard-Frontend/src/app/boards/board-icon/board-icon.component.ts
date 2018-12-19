@@ -21,11 +21,11 @@ export class BoardIconComponent implements OnInit {
   }
 
   public open() {
-    this._router.navigate(['boarditems', this.board.id, 'list']);
+    this._router.navigate(['boards', this.board.id, 'elements', 'list']);
   }
 
   public edit() {
-    this._router.navigate(['boards/edit', this.board.id]);
+    this._router.navigate(['boards', this.board.id, 'edit']);
   }
 
   public remove() {
@@ -34,7 +34,7 @@ export class BoardIconComponent implements OnInit {
     );
   }
 
-  private onBoardRemoved(result: boolean): any {
+  private onBoardRemoved(result: boolean): void {
     console.log(result);
   }
 }

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from '../core/http.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Board } from './interfaces/board';
 import { Observable, Observer } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { BoardNewData } from './interfaces/board-new-data';
 import { BoardEditData } from './interfaces/board-edit-data';
 import { map, share } from 'rxjs/operators';
+import { AuthorizedService } from '../core/authorized.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoardService extends HttpService {
+export class BoardService extends AuthorizedService {
 
   public boardCreated: Observable<Board>;
   private _boardCreatedObserver: Observer<Board>;
@@ -23,8 +23,8 @@ export class BoardService extends HttpService {
   private _boardDeletedObserver: Observer<boolean>;
 
   constructor(private _httpClient: HttpClient,
-              private _authService: AuthService) {
-    super();
+                      _authService: AuthService) {
+    super(_authService);
 
     this.boardCreated = Observable.create((observer: Observer<Board>) => {
       this._boardCreatedObserver = observer;
@@ -37,15 +37,6 @@ export class BoardService extends HttpService {
     this.boardDeleted = Observable.create((observer: Observer<boolean>) => {
       this._boardDeletedObserver = observer;
     }).pipe(share());
-  }
-
-  public getHeaders(): HttpHeaders {
-    let headers = super.getHeaders();
-    const token = this._authService.getToken();
-    if (token !== null) {
-      headers = headers.append('Authorization', 'Bearer ' + token);
-    }
-    return headers;
   }
 
   public getBoards(): Observable<Board[]> {

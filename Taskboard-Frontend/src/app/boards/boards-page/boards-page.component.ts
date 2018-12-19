@@ -1,18 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BoardService } from '../board.service';
 
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
   styleUrls: ['./boards-page.component.css']
 })
-export class BoardsPageComponent implements OnInit, OnDestroy {
+export class BoardsPageComponent implements OnInit {
 
-  constructor(private _boardService: BoardService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
-  }
 }

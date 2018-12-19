@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, Input, ComponentFactoryResolver } from '@angular/core';
 import { BoardItemDirective } from '../directives/board-item.directive';
-import { IconItemData } from '../interfaces/icon-item-data';
-import { BoardIcon } from '../interfaces/board-icon';
+import { BoardElementData } from '../interfaces/board-element-data';
+import { BoardElementIconComponent } from '../interfaces/board-element-icon-component';
 
 @Component({
   selector: 'app-board-item-icon',
@@ -10,7 +10,7 @@ import { BoardIcon } from '../interfaces/board-icon';
 })
 export class BoardItemIconComponent implements OnInit, OnDestroy {
 
-  @Input() iconItemData: IconItemData;
+  @Input() boardElementData: BoardElementData;
 
   @ViewChild(BoardItemDirective) appBoardItem: BoardItemDirective;
 
@@ -26,13 +26,13 @@ export class BoardItemIconComponent implements OnInit, OnDestroy {
   private loadComponents() {
     const componentFactory =
       this._componentFactoryResolver.resolveComponentFactory(
-        this.iconItemData.component
+        this.boardElementData.componentType
       );
 
     const viewContainerRef = this.appBoardItem.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BoardIcon>componentRef.instance).item = this.iconItemData.iconItem;
+    (<BoardElementIconComponent>componentRef.instance).boardElement = this.boardElementData.boardElement;
   }
 }

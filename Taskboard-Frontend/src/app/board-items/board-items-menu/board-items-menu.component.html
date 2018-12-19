@@ -47,13 +47,20 @@
         <select
             class="custom-select custom-select-lg form-control filter-select mr-3"
             name="displaySizeFilter"
-            [selectedIndex]="boardItemsToShowFilter"
-            (change)="boardItemsToShowChanged($event.target.value)">            
+            [selectedIndex]="completionStatusFilter"
+            (change)="completionStatusChanged($event.target.value)">            
+            <option value="All">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Incomplete">Incompleted</option>
+        </select>
+        <select
+            class="custom-select custom-select-lg form-control filter-select mr-3"
+            name="displaySizeFilter"
+            [selectedIndex]="boardElementsToShowFilter"
+            (change)="boardElementsToShowChanged($event.target.value)">            
             <option value="All">All</option>
             <option value="Tasks">Tasks</option>
             <option value="Notes">Notes</option>
-            <option value="Completed">Completed</option>
-            <option value="Incomplete">Incompleted</option>
         </select>
         <button
             type="button"

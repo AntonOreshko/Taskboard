@@ -1,0 +1,14 @@
+.subtask-icon {
+    min-width: 280px;
+    max-width: 280px;
+}
+
+.subtask-name {
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.subtask-description {
+    min-height: 60px;
+    max-height: 60px;
+}

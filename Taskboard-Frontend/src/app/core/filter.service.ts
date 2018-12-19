@@ -1,9 +1,10 @@
-import { PlaceToSearch } from './enums/PlaceToSearch';
-import { DisplayOrder } from './enums/DisplayOrder';
-import { DisplaySize } from './enums/DisplaySize';
+import { PlaceToSearch } from './enums/place-to-search.enum';
+import { DisplayOrder } from './enums/display-order.enum';
+import { DisplaySize } from './enums/display-size.enum';
 import { Observable, Observer } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { BoardItem } from '../board-items/interfaces/board-item';
+import { Creatable } from './interfaces/creatable';
+import { Descriptable } from './interfaces/descriptable';
 
 export class FilterService {
 
@@ -79,29 +80,54 @@ export class FilterService {
   public getDisplayOrderFunc() {
     switch (this.displayOrderFilter) {
       case DisplayOrder.ByCreationDate_ASC:
-        return (i1: BoardItem, i2: BoardItem): number => {
+        return (i1: Creatable, i2: Creatable): number => {
           if (i1.created > i2.created) { return 1; }
           if (i2.created > i1.created) { return -1; }
           return 0;
         };
       case DisplayOrder.ByCreationDate_DESC:
-        return (i1: BoardItem, i2: BoardItem): number => {
+        return (i1: Creatable, i2: Creatable): number => {
           if (i1.created > i2.created) { return -1; }
           if (i2.created > i1.created) { return 1; }
           return 0;
         };
       case DisplayOrder.ByName_ASC:
-        return (i1: BoardItem, i2: BoardItem): number => {
+        return (i1: Descriptable, i2: Descriptable): number => {
           if (i1.name > i2.name) { return 1; }
           if (i2.name > i1.name) { return -1; }
           return 0;
         };
       case DisplayOrder.ByName_DESC:
-        return (i1: BoardItem, i2: BoardItem): number => {
+        return (i1: Descriptable, i2: Descriptable): number => {
           if (i1.name > i2.name) { return -1; }
           if (i2.name > i1.name) { return 1; }
           return 0;
         };
     }
+  }
+
+  public applyTextFilter(item: Descriptable): boolean {
+    const nameContains = item.name.includes(this.textFilter);
+    let descriptionContains = false;
+    if (item.description !== undefined && item.description !== null) {
+      descriptionContains = item.description.includes(this.textFilter);
+    }
+
+    switch (this.placeToSearchFilter) {
+      case PlaceToSearch.Everywhere:
+        return nameContains || descriptionContains;
+      case PlaceToSearch.Name:
+        return nameContains;
+      case PlaceToSearch.Description:
+        return descriptionContains;
+    }
+  }
+
+  public applyAllFilters(item: Descriptable): boolean {
+    let textFilterResult = true;
+    if (this.textFilter.length > 0) {
+      textFilterResult = this.applyTextFilter(item);
+    }
+    return textFilterResult;
   }
 }

@@ -89,7 +89,6 @@ namespace WebApi.Migrations
                         .HasColumnName("COMPLETED");
 
                     b.Property<long?>("CompletedById")
-                        .IsRequired()
                         .HasColumnName("COMPLETED_BY");
 
                     b.Property<DateTime>("Created")

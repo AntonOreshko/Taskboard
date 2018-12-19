@@ -1,0 +1,10 @@
+<div class="ml-2 mr-2 mt-2 mb-2">
+  <div class="card">
+    <div class="card-body subtask-icon">
+      <h3 class="card-title text-truncate subtask-name ">{{ subtask.name }}</h3>
+      <div class="card-text text-truncate subtask-description">{{ subtask.description }}</div>
+      <button (click)="edit()" class="btn btn-outline-warning my-2 my-sm-0 mr-2 btn-width">Edit</button>
+      <button (click)="remove()" class="btn btn-outline-danger my-2 my-sm-0 btn-width">Remove</button>
+    </div>
+  </div>
+</div>

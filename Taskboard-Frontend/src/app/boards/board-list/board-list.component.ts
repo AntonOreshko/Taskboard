@@ -3,9 +3,9 @@ import { BoardService } from '../board.service';
 import { Board } from '../interfaces/board';
 import { Subscription } from 'rxjs';
 import { BoardFilterService } from '../board-filter.service';
-import { PlaceToSearch } from 'src/app/core/enums/PlaceToSearch';
-import { DisplayOrder } from 'src/app/core/enums/DisplayOrder';
-import { DisplaySize } from 'src/app/core/enums/DisplaySize';
+import { PlaceToSearch } from 'src/app/core/enums/place-to-search.enum';
+import { DisplayOrder } from 'src/app/core/enums/display-order.enum';
+import { DisplaySize } from 'src/app/core/enums/display-size.enum';
 
 @Component({
   selector: 'app-board-list',

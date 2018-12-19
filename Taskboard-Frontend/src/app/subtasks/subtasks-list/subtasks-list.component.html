@@ -1,0 +1,6 @@
+<div class="row mt-3 mb-2">
+  <app-subtasks-menu></app-subtasks-menu>
+</div>
+<div class="d-flex flex-row flex-wrap">
+  <app-subtask-icon *ngFor="let subtask of displayedSubtasks" [subtask]="subtask"></app-subtask-icon>
+</div>

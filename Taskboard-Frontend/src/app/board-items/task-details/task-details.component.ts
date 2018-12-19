@@ -21,7 +21,7 @@ export class TaskDetailsComponent implements OnInit {
 
   private _mode: string;
 
-  private get returnUrl() { return 'boarditems/' + this._boardId + '/list'; }
+  private get returnUrl() { return 'boards/' + this._boardId + '/elements/list'; }
 
   constructor(private _boardItemsService: BoardItemsService,
               private _router: Router,
@@ -34,8 +34,8 @@ export class TaskDetailsComponent implements OnInit {
     });
 
     this._mode = 'new';
-    this._taskId = this._route.snapshot.params['id'];
-    this._boardId = this._route.parent.snapshot.params['id'];
+    this._taskId = this._route.snapshot.params['taskId'];
+    this._boardId = this._route.parent.snapshot.params['boardId'];
 
     if (this._taskId !== undefined) {
       this._mode = 'edit';

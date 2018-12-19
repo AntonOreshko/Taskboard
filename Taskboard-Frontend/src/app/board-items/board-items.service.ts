@@ -10,11 +10,12 @@ import { NoteNewData } from './interfaces/note-new-data';
 import { NoteEditData } from './interfaces/note-edit-data';
 import { Observable, Observer } from 'rxjs';
 import { share, map } from 'rxjs/operators';
+import { AuthorizedService } from '../core/authorized.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoardItemsService extends HttpService {
+export class BoardItemsService extends AuthorizedService {
 
   public taskCreated: Observable<Task>;
   private _taskCreatedObserver: Observer<Task>;
@@ -35,8 +36,8 @@ export class BoardItemsService extends HttpService {
   private _noteDeletedObserver: Observer<boolean>;
 
   constructor(private _httpClient: HttpClient,
-              private _authService: AuthService) {
-    super();
+                      _authService: AuthService) {
+    super(_authService);
 
     this.taskCreated = Observable.create((observer: Observer<Task>) => {
       this._taskCreatedObserver = observer;
@@ -61,15 +62,6 @@ export class BoardItemsService extends HttpService {
     this.noteDeleted = Observable.create((observer: Observer<boolean>) => {
       this._noteDeletedObserver = observer;
     }).pipe(share());
-  }
-
-  public getHeaders(): HttpHeaders {
-    let headers = super.getHeaders();
-    const token = this._authService.getToken();
-    if (token !== null) {
-      headers = headers.append('Authorization', 'Bearer ' + token);
-    }
-    return headers;
   }
 
   public getTasks(boardId: number): Observable<Task[]> {

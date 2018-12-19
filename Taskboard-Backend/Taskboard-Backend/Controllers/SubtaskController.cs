@@ -99,7 +99,7 @@ namespace WebApi.Controllers
 
             var result = await _subtaskService.DeleteSubtask(subtask);
 
-            return Ok(subtask);
+            return Ok(result);
         }
     }
 }

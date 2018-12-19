@@ -33,7 +33,7 @@ export class BoardDetailsComponent implements OnInit {
     });
 
     this._mode = 'new';
-    this._boardId = this._route.snapshot.params['id'];
+    this._boardId = this._route.snapshot.params['boardId'];
 
     if (this._boardId !== undefined) {
       this._mode = 'edit';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../interfaces/task';
-import { BoardIcon } from '../interfaces/board-icon';
+import { BoardElementIconComponent } from '../interfaces/board-element-icon-component';
 import { Router } from '@angular/router';
 import { BoardItemsService } from '../board-items.service';
 
@@ -9,9 +9,9 @@ import { BoardItemsService } from '../board-items.service';
   templateUrl: './task-icon.component.html',
   styleUrls: ['./task-icon.component.css']
 })
-export class TaskIconComponent implements OnInit, BoardIcon {
+export class TaskIconComponent implements OnInit, BoardElementIconComponent {
 
-  public item: Task;
+  public boardElement: Task;
 
   constructor(private _router: Router,
               private _boardItemsService: BoardItemsService) { }
@@ -20,15 +20,15 @@ export class TaskIconComponent implements OnInit, BoardIcon {
   }
 
   public open() {
-
+    this._router.navigate(['boards/' + this.boardElement.boardId + '/elements/tasks/' + this.boardElement.id + '/subtasks/list']);
   }
 
   public edit() {
-    this._router.navigate(['boarditems/' + this.item.boardId + '/edit/task/' + this.item.id]);
+    this._router.navigate(['boards/' + this.boardElement.boardId + '/elements/tasks/' + this.boardElement.id + '/edit']);
   }
 
   public remove() {
-    this._boardItemsService.deleteTask(this.item.id).subscribe(
+    this._boardItemsService.deleteTask(this.boardElement.id).subscribe(
       this.onTaskRemoved.bind(this)
     );
   }

@@ -1,4 +1,5 @@
-export interface BoardNewData {
-    name: string;
-    description: string;
+import { Descriptable } from 'src/app/core/interfaces/descriptable';
+
+export interface BoardNewData extends Descriptable {
+
 }

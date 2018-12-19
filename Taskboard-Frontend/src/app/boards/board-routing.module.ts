@@ -12,7 +12,7 @@ const routes: Routes = [
     [
       { path: 'list', component: BoardListComponent },
       { path: 'new', component: BoardDetailsComponent },
-      { path: 'edit/:id', component: BoardDetailsComponent },
+      { path: ':boardId/edit', component: BoardDetailsComponent },
     ]
   },
 ];

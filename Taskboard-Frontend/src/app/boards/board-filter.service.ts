@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FilterService } from '../core/filter.service';
 import { Board } from './interfaces/board';
-import { PlaceToSearch } from '../core/enums/PlaceToSearch';
+import { PlaceToSearch } from '../core/enums/place-to-search.enum';
 
 @Injectable({
   providedIn: 'root'

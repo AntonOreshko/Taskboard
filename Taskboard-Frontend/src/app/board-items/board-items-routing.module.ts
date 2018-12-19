@@ -8,13 +8,13 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
 
 const routes: Routes = [
-  { path: 'boarditems/:id', component: BoardItemsPageComponent, children:
+  { path: 'boards/:boardId/elements', component: BoardItemsPageComponent, children:
     [
       { path: 'list', component: BoardItemsListComponent },
       { path: 'new/task', component: TaskDetailsComponent },
       { path: 'new/note', component: NoteDetailsComponent },
-      { path: 'edit/task/:id', component: TaskDetailsComponent },
-      { path: 'edit/note/:id', component: NoteDetailsComponent },
+      { path: 'tasks/:taskId/edit', component: TaskDetailsComponent },
+      { path: 'notes/:noteId/edit', component: NoteDetailsComponent },
     ]
   },
 ];

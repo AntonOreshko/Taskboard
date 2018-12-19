@@ -1,8 +1,8 @@
 <div class="ml-2 mr-2 mt-2 mb-2">
   <div class="card">
     <div class="card-body note-icon">
-      <h3 class="card-title text-truncate note-name ">{{ item.name }}</h3>
-      <div class="card-text text-truncate note-description">{{ item.description }}</div>
+      <h3 class="card-title text-truncate note-name ">{{ boardElement.name }}</h3>
+      <div class="card-text text-truncate note-description">{{ boardElement.description }}</div>
       <button (click)="edit()" class="btn btn-outline-warning my-2 my-sm-0 mr-2 btn-width">Edit</button>
       <button (click)="remove()" class="btn btn-outline-danger my-2 my-sm-0 btn-width">Remove</button>
     </div>

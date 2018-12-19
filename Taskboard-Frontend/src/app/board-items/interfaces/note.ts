@@ -1,6 +1,5 @@
-import { BoardItem } from './board-item';
+import { BoardElement } from './board-element';
 
-// tslint:disable-next-line:no-empty-interface
-export interface Note extends BoardItem {
+export interface Note extends BoardElement {
 
 }

@@ -1,6 +1,6 @@
-import { BoardItem } from './board-item';
+import { Completable } from 'src/app/core/interfaces/completable';
+import { BoardElement } from './board-element';
 
-export interface Task extends BoardItem {
-    completed: boolean;
-    completedById: number;
+export interface Task extends BoardElement, Completable {
+
 }

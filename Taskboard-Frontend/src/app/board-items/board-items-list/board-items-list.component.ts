@@ -4,15 +4,11 @@ import { Note } from '../interfaces/note';
 import { Subscription } from 'rxjs';
 import { BoardItemsService } from '../board-items.service';
 import { ActivatedRoute } from '@angular/router';
-import { BoardItem } from '../interfaces/board-item';
 import { TaskIconComponent } from '../task-icon/task-icon.component';
 import { NoteIconComponent } from '../note-icon/note-icon.component';
-import { IconItemData } from '../interfaces/icon-item-data';
+import { BoardElementData } from '../interfaces/board-element-data';
 import { BoardItemsFilterService } from '../board-items-filter.service';
-import { PlaceToSearch } from 'src/app/core/enums/PlaceToSearch';
-import { DisplayOrder } from 'src/app/core/enums/DisplayOrder';
-import { DisplaySize } from 'src/app/core/enums/DisplaySize';
-import { BoardItemsToShow } from 'src/app/core/enums/BoardItemsToShow';
+import { BoardElement } from '../interfaces/board-element';
 
 @Component({
   selector: 'app-board-items-list',
@@ -24,8 +20,8 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
   public tasks: Task[] = [];
   public notes: Note[] = [];
 
-  private _items: BoardItem[] = [];
-  public displayItems: BoardItem[] = [];
+  private _elements: BoardElement[] = [];
+  public displayedElements: BoardElement[] = [];
 
   private _subscriptions: Subscription[] = [];
 
@@ -37,7 +33,7 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this._boardId = this._activeRoute.parent.snapshot.params['id'];
+    this._boardId = this._activeRoute.parent.snapshot.params['boardId'];
 
     this._subscriptions.push(
       this._boardItemsService.taskDeleted.subscribe(this.onTaskDeleted.bind(this))
@@ -63,8 +59,12 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
       this.onDisplaySizeFilterChanged.bind(this))
     );
 
-    this._subscriptions.push(this._boardItemsFilterService.boardItemsToShowFilterChanged.subscribe(
-      this.onBoardItemsToShowFilterChanged.bind(this))
+    this._subscriptions.push(this._boardItemsFilterService.completionStatusFilterChanged.subscribe(
+      this.onCompletionStatusFilterChanged.bind(this))
+    );
+
+    this._subscriptions.push(this._boardItemsFilterService.boardElementsToShowFilterChanged.subscribe(
+      this.onBoardElementsToShowFilterChanged.bind(this))
     );
 
     this._boardItemsService.getTasks(this._boardId).subscribe(
@@ -82,74 +82,78 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
     });
   }
 
-  private setDisplayItems() {
-    this.displayItems = [];
-    this._items = [];
-    this._items.push(...this.tasks);
-    this._items.push(...this.notes);
+  private setDisplayedElements() {
+    this.displayedElements = [];
+    this._elements = [];
+    this._elements.push(...this.tasks);
+    this._elements.push(...this.notes);
 
-    for (let i = 0; i < this._items.length; i++) {
-      if (this._boardItemsFilterService.applyAllFilters(this._items[i])) {
-        this.displayItems.push(this._items[i]);
+    for (let i = 0; i < this._elements.length; i++) {
+      if (this._boardItemsFilterService.applyAllFilters(this._elements[i])) {
+        this.displayedElements.push(this._elements[i]);
       }
     }
 
-    this.displayItems = this.displayItems.sort(this._boardItemsFilterService.getDisplayOrderFunc());
+    this.displayedElements = this.displayedElements.sort(this._boardItemsFilterService.getDisplayOrderFunc());
   }
 
   private onGetTasksList(tasks: Task[]) {
     this.tasks = tasks;
-    this.setDisplayItems();
+    this.setDisplayedElements();
     console.log(this.tasks);
   }
 
   private onGetNotesList(notes: Note[]) {
     this.notes = notes;
-    this.setDisplayItems();
+    this.setDisplayedElements();
     console.log(this.notes);
   }
 
-  private onTaskDeleted(result: boolean) {
+  private onTaskDeleted() {
     this._boardItemsService.getTasks(this._boardId).subscribe(
       this.onGetTasksList.bind(this)
     );
   }
 
-  private onNoteDeleted(result: boolean) {
+  private onNoteDeleted() {
     this._boardItemsService.getNotes(this._boardId).subscribe(
       this.onGetNotesList.bind(this)
     );
   }
 
-  public getComponentByItem(item: BoardItem): Type<any> {
-    if (this.tasks.includes(item as Task)) { return TaskIconComponent; }
-    if (this.notes.includes(item as Note)) { return NoteIconComponent; }
+  public getComponentByElement(element: BoardElement): Type<any> {
+    if (this.tasks.includes(element as Task)) { return TaskIconComponent; }
+    if (this.notes.includes(element as Note)) { return NoteIconComponent; }
   }
 
-  public getIconItemData(item: BoardItem): IconItemData {
+  public getBoardElementData(element: BoardElement): BoardElementData {
     return {
-      component: this.getComponentByItem(item),
-      iconItem: item
+      componentType: this.getComponentByElement(element),
+      boardElement: element
     };
   }
 
-  private onTextFilterChanged(value: string) {
-    this.setDisplayItems();
+  private onTextFilterChanged() {
+    this.setDisplayedElements();
   }
 
-  private onPlaceToSearchFilterChanged(value: PlaceToSearch) {
-    this.setDisplayItems();
+  private onPlaceToSearchFilterChanged() {
+    this.setDisplayedElements();
   }
 
-  private onDisplayOrderFilterChanged(value: DisplayOrder) {
-    this.setDisplayItems();
+  private onDisplayOrderFilterChanged() {
+    this.setDisplayedElements();
   }
 
-  private onDisplaySizeFilterChanged(value: DisplaySize) {
-    this.setDisplayItems();
+  private onDisplaySizeFilterChanged() {
+    this.setDisplayedElements();
   }
 
-  private onBoardItemsToShowFilterChanged(value: BoardItemsToShow) {
-    this.setDisplayItems();
+  private onCompletionStatusFilterChanged() {
+    this.setDisplayedElements();
+  }
+
+  private onBoardElementsToShowFilterChanged() {
+    this.setDisplayedElements();
   }
 }

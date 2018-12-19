@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 import { BoardModule } from './boards/board.module';
 import { BoardItemsModule } from './board-items/board-items.module';
+import { SubtasksModule } from './subtasks/subtasks.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BoardItemsModule } from './board-items/board-items.module';
     AuthModule,
     BoardModule,
     BoardItemsModule,
+    SubtasksModule,
     AppRoutingModule,
   ],
   providers: [],
