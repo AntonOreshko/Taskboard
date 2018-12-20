@@ -1,4 +1,5 @@
-﻿using DomainModels.Models;
+﻿using System.Collections.Generic;
+using DomainModels.Models;
 using System.Threading.Tasks;
 
 namespace RepositoryLayer.Repository
@@ -8,5 +9,7 @@ namespace RepositoryLayer.Repository
         Task<User> GetAsync(string email);
 
         Task<bool> ContainsAsync(string email);
+
+        Task<IEnumerable<User>> SearchUsers(string filter);
     }
 }

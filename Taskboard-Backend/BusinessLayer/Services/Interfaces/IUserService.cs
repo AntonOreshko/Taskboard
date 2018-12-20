@@ -1,4 +1,5 @@
-﻿using DomainModels.Models;
+﻿using System.Collections.Generic;
+using DomainModels.Models;
 using RepositoryLayer.Repository;
 using System.Threading.Tasks;
 
@@ -17,5 +18,7 @@ namespace BusinessLayer.Services.Interfaces
         Task<User> Login(string email, string password);
 
         Task<User> EditUser(User user, string oldPassword = null, string newPassword = null);
+
+        Task<IEnumerable<User>> SearchUsers(string filter);
     }
 }

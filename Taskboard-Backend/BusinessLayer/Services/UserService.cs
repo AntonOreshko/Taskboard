@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLayer.Services.Interfaces;
 using DomainModels.Models;
@@ -81,6 +82,11 @@ namespace BusinessLayer.Services
             }
 
             return user;
+        }
+
+        public async Task<IEnumerable<User>> SearchUsers(string filter)
+        {
+            return await UserRepository.SearchUsers(filter);
         }
 
         public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
