@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer.Services.Interfaces;
-using DomainModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,15 +16,22 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _userService;
 
+        private readonly IContactService _contactService;
+
+        private readonly IContactRequestService _contactRequestService;
+
         private readonly IConfiguration _configuration;
 
         private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService, IConfiguration configuration, IMapper mapper)
+        public UsersController(IUserService userService, IConfiguration configuration, IMapper mapper,
+                               IContactService contactService, IContactRequestService contactRequestService)
         {
             _userService = userService;
             _configuration = configuration;
             _mapper = mapper;
+            _contactService = contactService;
+            _contactRequestService = contactRequestService;
         }
 
         [HttpGet("info")]

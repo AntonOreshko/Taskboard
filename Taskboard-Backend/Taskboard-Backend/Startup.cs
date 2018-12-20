@@ -15,8 +15,6 @@ using RepositoryLayer.EntityFramework.Context;
 using RepositoryLayer.Repository;
 using System.Text;
 using AutoMapper;
-using BusinessLayer.Services.Interfaces.Mail;
-using BusinessLayer.Services.Mail;
 
 namespace WebApi
 {
@@ -76,6 +74,8 @@ namespace WebApi
             services.AddTransient<IRepository<Subtask>, EfRepository<Subtask>>();
             services.AddTransient<IRepository<Note>, EfRepository<Note>>();
             services.AddTransient<IRepository<UserBoard>, EfRepository<UserBoard>>();
+            services.AddTransient<IRepository<Contact>, EfRepository<Contact>>();
+            services.AddTransient<IRepository<ContactRequest>, EfRepository<ContactRequest>>();
 
             services.AddTransient<IUserRepository, EfUserRepository>();
             services.AddTransient<IBoardRepository, EfBoardRepository>();
@@ -83,6 +83,8 @@ namespace WebApi
             services.AddTransient<ISubtaskRepository, EfSubtaskRepository>();
             services.AddTransient<INoteRepository, EfNoteRepository>();
             services.AddTransient<IUserBoardRepository, EfUserBoardRepository>();
+            services.AddTransient<IContactRepository, EfContactRepository>();
+            services.AddTransient<IContactRequestRepository, EfContactRequestRepository>();
         }
 
         private void ConfigureItemServices(IServiceCollection services)
@@ -92,6 +94,8 @@ namespace WebApi
             services.AddTransient<ITaskService, TaskService>();
             services.AddTransient<ISubtaskService, SubtaskService>();
             services.AddTransient<INoteService, NoteService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IContactRequestService, ContactRequestService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

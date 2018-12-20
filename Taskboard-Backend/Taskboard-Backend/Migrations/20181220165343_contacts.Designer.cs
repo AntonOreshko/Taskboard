@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepositoryLayer.EntityFramework.Context;
 
 namespace WebApi.Migrations
 {
     [DbContext(typeof(TaskboardContext))]
-    partial class TaskboardContextModelSnapshot : ModelSnapshot
+    [Migration("20181220165343_contacts")]
+    partial class contacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,28 +68,6 @@ namespace WebApi.Migrations
                     b.HasIndex("SecondUserId");
 
                     b.ToTable("CONTACTS");
-                });
-
-            modelBuilder.Entity("DomainModels.Models.ContactRequest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("ReceiverId")
-                        .HasColumnName("RECEIVER_ID");
-
-                    b.Property<long>("SenderId")
-                        .HasColumnName("SENDER_ID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReceiverId");
-
-                    b.HasIndex("SenderId");
-
-                    b.ToTable("CONTACT_REQUESTS");
                 });
 
             modelBuilder.Entity("DomainModels.Models.Note", b =>
@@ -269,19 +249,6 @@ namespace WebApi.Migrations
                         .WithMany()
                         .HasForeignKey("SecondUserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DomainModels.Models.ContactRequest", b =>
-                {
-                    b.HasOne("DomainModels.Models.User", "Receiver")
-                        .WithMany()
-                        .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DomainModels.Models.User", "Sender")
-                        .WithMany("ContactRequests")
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DomainModels.Models.Note", b =>

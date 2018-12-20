@@ -37,6 +37,14 @@ namespace WebApi.Configurators
             CreateMap<SubtaskEditDto, Subtask>();
 
             CreateMap<Subtask, SubtaskReturnDto>();
+
+            CreateMap<ContactCreateDto, Contact>();
+
+            CreateMap<Contact, ContactReturnDto>();
+
+            CreateMap<ContactRequestCreateDto, ContactRequest>();
+
+            CreateMap<ContactRequest, ContactRequestReturnDto>();
         }
     }
 }

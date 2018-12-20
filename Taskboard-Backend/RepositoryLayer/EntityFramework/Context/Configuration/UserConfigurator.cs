@@ -42,6 +42,5 @@ namespace RepositoryLayer.EntityFramework.Context.Configuration
 
             builder.ToTable("USERS");
         }
-
     }
 }

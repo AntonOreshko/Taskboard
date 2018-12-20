@@ -18,6 +18,10 @@ namespace RepositoryLayer.EntityFramework.Context
 
         public DbSet<Note> Notes { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<ContactRequest> ContactRequests { get; set; }
+
         public TaskboardContext(DbContextOptions<TaskboardContext> options) : base(options)
         {
 
@@ -33,6 +37,8 @@ namespace RepositoryLayer.EntityFramework.Context
             modelBuilder.ApplyConfiguration(new TaskConfigurator());
             modelBuilder.ApplyConfiguration(new SubtaskConfigurator());
             modelBuilder.ApplyConfiguration(new NoteConfigurator());
+            modelBuilder.ApplyConfiguration(new ContactConfigurator());
+            modelBuilder.ApplyConfiguration(new ContactRequestConfigurator());
         }
     }
 }

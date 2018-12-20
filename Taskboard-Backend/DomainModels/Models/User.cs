@@ -19,5 +19,9 @@ namespace DomainModels.Models
         public byte[] PasswordSalt { get; set; }
 
         public List<UserBoard> UserBoards { get; set; }
+
+        public List<Contact> Contacts { get; set; }
+
+        public List<ContactRequest> ContactRequests { get; set; }
     }
 }
