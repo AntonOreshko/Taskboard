@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { BoardModule } from './boards/board.module';
 import { SubtasksModule } from './subtasks/subtasks.module';
 import { BoardElementsModule } from './board-elements/board-elements.module';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,12 @@ import { BoardElementsModule } from './board-elements/board-elements.module';
     BoardModule,
     BoardElementsModule,
     SubtasksModule,
+    UsersModule,
     AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

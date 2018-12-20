@@ -20,9 +20,9 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       email : new FormControl('oreshko2010@gmail.com', [Validators.required, Validators.email]),
       fullname: new FormControl('Anton Oreshko', [Validators.required]),
-      password: new FormControl('eR8dHySL', [Validators.required]),
-      confirmPassword: new FormControl('eR8dHySL', [Validators.required])
-    });
+      password: new FormControl('password', [Validators.required]),
+      confirmPassword: new FormControl('password', [Validators.required])
+    }, [this.confirmPasswordValidator]);
   }
 
   confirmPasswordValidator(group: FormGroup) {

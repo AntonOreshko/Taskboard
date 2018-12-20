@@ -56,6 +56,33 @@ namespace BusinessLayer.Services
             return user;
         }
 
+        public async Task<User> EditUser(User user, string oldPassword = null, string newPassword = null)
+        {
+            if (string.IsNullOrEmpty(newPassword))
+            {
+                await Change(user);
+
+                return user;
+            }
+
+            if (string.IsNullOrEmpty(oldPassword))
+            {
+                return user;
+            }
+
+            if (VerifyPasswordHash(oldPassword, user.PasswordHash, user.PasswordSalt))
+            {
+                CreatePasswordHash(newPassword, out var passwordHash, out var passwordSalt);
+
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+
+                await Change(user);
+            }
+
+            return user;
+        }
+
         public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())

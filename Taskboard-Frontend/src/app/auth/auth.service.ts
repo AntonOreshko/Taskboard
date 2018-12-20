@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RegisterData } from './interfaces/register-data';
 import { LoginData } from './interfaces/login-data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserData } from './interfaces/user-data';
+import { User } from './interfaces/user';
 import { HttpService } from '../core/http.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class AuthService extends HttpService {
 
   private _token: string;
 
-  private _userData: UserData;
+  private _userData: User;
 
   constructor(private _httpClient: HttpClient) {
     super();

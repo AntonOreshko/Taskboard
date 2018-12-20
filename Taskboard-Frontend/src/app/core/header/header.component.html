@@ -10,5 +10,6 @@
     </ul>
     <button *ngIf="!isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0 mr-2" [routerLink]="[ 'register' ]">Register</button>
     <button *ngIf="!isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" [routerLink]="[ 'login' ]">Login</button>
-    <button *ngIf="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
+    <button *ngIf="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0 mr-2" (click)="logout()">Logout</button>
+    <button *ngIf="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" (click)="personalInfo()">Info</button>
 </nav>

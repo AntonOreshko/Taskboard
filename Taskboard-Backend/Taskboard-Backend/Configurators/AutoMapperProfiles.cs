@@ -10,6 +10,8 @@ namespace WebApi.Configurators
         {
             CreateMap<UserRegisterDto, User>();
 
+            CreateMap<UserEditDto, User>();
+
             CreateMap<User, UserReturnDto>();
 
             CreateMap<BoardCreateDto, Board>();
