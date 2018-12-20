@@ -1,20 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Note } from '../interfaces/note';
-import { BoardElementIconComponent } from '../interfaces/board-element-icon-component';
+import { BoardElementIconBase } from '../interfaces/board-element-icon-base';
 import { Router } from '@angular/router';
-import { BoardItemsService } from '../board-items.service';
+import { BoardElementsService } from '../board-elements.service';
 
 @Component({
   selector: 'app-note-icon',
   templateUrl: './note-icon.component.html',
   styleUrls: ['./note-icon.component.css']
 })
-export class NoteIconComponent implements OnInit, BoardElementIconComponent {
+export class NoteIconComponent implements OnInit, BoardElementIconBase {
 
   public boardElement: Note;
 
   constructor(private _router: Router,
-              private _boardItemsService: BoardItemsService) { }
+              private _boardItemsService: BoardElementsService) { }
 
   ngOnInit() {
   }

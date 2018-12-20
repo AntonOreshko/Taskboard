@@ -12,7 +12,7 @@ import { BoardElement } from './interfaces/board-element';
 @Injectable({
   providedIn: 'root'
 })
-export class BoardItemsFilterService extends FilterService {
+export class BoardElementsFilterService extends FilterService {
 
   public completionStatusFilter: CompletionStatus = CompletionStatus.All;
 

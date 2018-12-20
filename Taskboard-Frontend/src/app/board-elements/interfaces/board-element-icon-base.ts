@@ -1,5 +1,5 @@
 import { BoardElement } from './board-element';
 
-export interface BoardElementIconComponent {
+export interface BoardElementIconBase {
     boardElement: BoardElement;
 }

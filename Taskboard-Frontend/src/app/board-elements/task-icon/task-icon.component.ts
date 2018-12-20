@@ -1,20 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../interfaces/task';
-import { BoardElementIconComponent } from '../interfaces/board-element-icon-component';
+import { BoardElementIconBase } from '../interfaces/board-element-icon-base';
 import { Router } from '@angular/router';
-import { BoardItemsService } from '../board-items.service';
+import { BoardElementsService } from '../board-elements.service';
 
 @Component({
   selector: 'app-task-icon',
   templateUrl: './task-icon.component.html',
   styleUrls: ['./task-icon.component.css']
 })
-export class TaskIconComponent implements OnInit, BoardElementIconComponent {
+export class TaskIconComponent implements OnInit, BoardElementIconBase {
 
   public boardElement: Task;
 
   constructor(private _router: Router,
-              private _boardItemsService: BoardItemsService) { }
+              private _boardItemsService: BoardElementsService) { }
 
   ngOnInit() {
   }

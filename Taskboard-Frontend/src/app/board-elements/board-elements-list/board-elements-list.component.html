@@ -1,9 +1,9 @@
 <div class="row mt-3 mb-2">
-  <app-board-items-menu></app-board-items-menu>
+  <app-board-elements-menu></app-board-elements-menu>
 </div>
 <div class="d-flex flex-row flex-wrap">
-  <app-board-item-icon 
+  <app-board-element-icon 
     *ngFor="let element of displayedElements" 
     [boardElementData]="getBoardElementData(element)">
-  </app-board-item-icon>
+  </app-board-element-icon>
 </div>

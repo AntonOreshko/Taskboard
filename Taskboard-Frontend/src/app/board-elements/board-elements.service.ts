@@ -15,7 +15,7 @@ import { AuthorizedService } from '../core/authorized.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BoardItemsService extends AuthorizedService {
+export class BoardElementsService extends AuthorizedService {
 
   public taskCreated: Observable<Task>;
   private _taskCreatedObserver: Observer<Task>;

@@ -2,20 +2,20 @@ import { Component, OnInit, OnDestroy, Type } from '@angular/core';
 import { Task } from '../interfaces/task';
 import { Note } from '../interfaces/note';
 import { Subscription } from 'rxjs';
-import { BoardItemsService } from '../board-items.service';
+import { BoardElementsService } from '../board-elements.service';
 import { ActivatedRoute } from '@angular/router';
 import { TaskIconComponent } from '../task-icon/task-icon.component';
 import { NoteIconComponent } from '../note-icon/note-icon.component';
 import { BoardElementData } from '../interfaces/board-element-data';
-import { BoardItemsFilterService } from '../board-items-filter.service';
+import { BoardElementsFilterService } from '../board-elements-filter.service';
 import { BoardElement } from '../interfaces/board-element';
 
 @Component({
-  selector: 'app-board-items-list',
-  templateUrl: './board-items-list.component.html',
-  styleUrls: ['./board-items-list.component.css']
+  selector: 'app-board-elements-list',
+  templateUrl: './board-elements-list.component.html',
+  styleUrls: ['./board-elements-list.component.css']
 })
-export class BoardItemsListComponent implements OnInit, OnDestroy {
+export class BoardElementsListComponent implements OnInit, OnDestroy {
 
   public tasks: Task[] = [];
   public notes: Note[] = [];
@@ -27,9 +27,9 @@ export class BoardItemsListComponent implements OnInit, OnDestroy {
 
   private _boardId: number;
 
-  constructor(private _boardItemsService: BoardItemsService,
+  constructor(private _boardItemsService: BoardElementsService,
               private _activeRoute: ActivatedRoute,
-              private _boardItemsFilterService: BoardItemsFilterService) { }
+              private _boardItemsFilterService: BoardElementsFilterService) { }
 
   ngOnInit() {
 

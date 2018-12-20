@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BoardItemsFilterService } from '../board-items-filter.service';
+import { BoardElementsFilterService } from '../board-elements-filter.service';
 import { PlaceToSearch } from 'src/app/core/enums/place-to-search.enum';
 import { DisplayOrder } from 'src/app/core/enums/display-order.enum';
 import { DisplaySize } from 'src/app/core/enums/display-size.enum';
@@ -8,11 +8,11 @@ import { BoardElementsToShow } from 'src/app/core/enums/board-elements-to-show.e
 import { CompletionStatus } from 'src/app/core/enums/completion-status.enum';
 
 @Component({
-  selector: 'app-board-items-menu',
-  templateUrl: './board-items-menu.component.html',
-  styleUrls: ['./board-items-menu.component.css']
+  selector: 'app-board-elements-menu',
+  templateUrl: './board-elements-menu.component.html',
+  styleUrls: ['./board-elements-menu.component.css']
 })
-export class BoardItemsMenuComponent implements OnInit {
+export class BoardElementsMenuComponent implements OnInit {
 
   private _boardId: number;
 
@@ -30,7 +30,7 @@ export class BoardItemsMenuComponent implements OnInit {
 
   constructor(private _router: Router,
               private _activeRoute: ActivatedRoute,
-              private _boardItemsFilterService: BoardItemsFilterService) { }
+              private _boardItemsFilterService: BoardElementsFilterService) { }
 
   ngOnInit() {
     this._boardId = this._activeRoute.parent.snapshot.params['boardId'];

@@ -1,9 +1,9 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[appBoardItem]'
+  selector: '[appBoardElement]'
 })
-export class BoardItemDirective {
+export class BoardElementDirective {
 
   constructor(public viewContainerRef: ViewContainerRef) { }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BoardItemsService } from '../board-items.service';
+import { BoardElementsService } from '../board-elements.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Note } from '../interfaces/note';
 import { NoteNewData } from '../interfaces/note-new-data';
@@ -23,7 +23,7 @@ export class NoteDetailsComponent implements OnInit {
 
   private get returnUrl() { return 'boards/' + this._boardId + '/elements/list'; }
 
-  constructor(private _boardItemsService: BoardItemsService,
+  constructor(private _boardItemsService: BoardElementsService,
     private _router: Router,
     private _route: ActivatedRoute) { }
 

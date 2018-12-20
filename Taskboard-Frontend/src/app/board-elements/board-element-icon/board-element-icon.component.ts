@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy, ViewChild, Input, ComponentFactoryResolver } from '@angular/core';
-import { BoardItemDirective } from '../directives/board-item.directive';
+import { BoardElementDirective } from '../directives/board-element.directive';
 import { BoardElementData } from '../interfaces/board-element-data';
-import { BoardElementIconComponent } from '../interfaces/board-element-icon-component';
+import { BoardElementIconBase } from '../interfaces/board-element-icon-base';
 
 @Component({
-  selector: 'app-board-item-icon',
-  templateUrl: './board-item-icon.component.html',
-  styleUrls: ['./board-item-icon.component.css']
+  selector: 'app-board-element-icon',
+  templateUrl: './board-element-icon.component.html',
+  styleUrls: ['./board-element-icon.component.css']
 })
-export class BoardItemIconComponent implements OnInit, OnDestroy {
+export class BoardElementIconComponent implements OnInit, OnDestroy {
 
   @Input() boardElementData: BoardElementData;
 
-  @ViewChild(BoardItemDirective) appBoardItem: BoardItemDirective;
+  @ViewChild(BoardElementDirective) appBoardItem: BoardElementDirective;
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -33,6 +33,6 @@ export class BoardItemIconComponent implements OnInit, OnDestroy {
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<BoardElementIconComponent>componentRef.instance).boardElement = this.boardElementData.boardElement;
+    (<BoardElementIconBase>componentRef.instance).boardElement = this.boardElementData.boardElement;
   }
 }

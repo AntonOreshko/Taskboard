@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BoardItemsPageComponent } from './board-items-page/board-items-page.component';
-import { BoardItemsListComponent } from './board-items-list/board-items-list.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
+import { BoardElementsListComponent } from './board-elements-list/board-elements-list.component';
+import { BoardElementsPageComponent } from './board-elements-page/board-elements-page.component';
 
 const routes: Routes = [
-  { path: 'boards/:boardId/elements', component: BoardItemsPageComponent, children:
+  { path: 'boards/:boardId/elements', component: BoardElementsPageComponent, children:
     [
-      { path: 'list', component: BoardItemsListComponent },
+      { path: 'list', component: BoardElementsListComponent },
       { path: 'new/task', component: TaskDetailsComponent },
       { path: 'new/note', component: NoteDetailsComponent },
       { path: 'tasks/:taskId/edit', component: TaskDetailsComponent },
@@ -29,4 +29,4 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class BoardItemsRoutingModule { }
+export class BoardElementsRoutingModule { }

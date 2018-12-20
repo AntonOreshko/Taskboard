@@ -2,51 +2,52 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BoardItemsRoutingModule } from './board-items-routing.module';
+import { BoardElementsRoutingModule } from './board-elements-routing.module';
 
-import { BoardItemsPageComponent } from './board-items-page/board-items-page.component';
-import { BoardItemsMenuComponent } from './board-items-menu/board-items-menu.component';
-import { BoardItemsListComponent } from './board-items-list/board-items-list.component';
 import { TaskIconComponent } from './task-icon/task-icon.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { NoteIconComponent } from './note-icon/note-icon.component';
 import { NoteDetailsComponent } from './note-details/note-details.component';
-import { BoardItemDirective } from './directives/board-item.directive';
-import { BoardItemIconComponent } from './board-item-icon/board-item-icon.component';
+import { BoardElementDirective } from './directives/board-element.directive';
+import { BoardElementIconComponent } from './board-element-icon/board-element-icon.component';
+import { BoardElementsListComponent } from './board-elements-list/board-elements-list.component';
+import { BoardElementsMenuComponent } from './board-elements-menu/board-elements-menu.component';
+import { BoardElementsPageComponent } from './board-elements-page/board-elements-page.component';
+
 
 @NgModule({
   declarations: [
-    BoardItemsPageComponent,
-    BoardItemsMenuComponent,
-    BoardItemsListComponent,
+    BoardElementsPageComponent,
+    BoardElementsMenuComponent,
+    BoardElementsListComponent,
     TaskIconComponent,
     TaskDetailsComponent,
     NoteIconComponent,
     NoteDetailsComponent,
-    BoardItemDirective,
-    BoardItemIconComponent
+    BoardElementDirective,
+    BoardElementIconComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BoardItemsRoutingModule
+    BoardElementsRoutingModule
   ],
   entryComponents: [
     TaskIconComponent,
     NoteIconComponent
   ],
   exports: [
-    BoardItemsPageComponent,
-    BoardItemsMenuComponent,
-    BoardItemsListComponent,
+    BoardElementsPageComponent,
+    BoardElementsMenuComponent,
+    BoardElementsListComponent,
     TaskIconComponent,
     TaskDetailsComponent,
     NoteIconComponent,
     NoteDetailsComponent,
-    BoardItemIconComponent,
-    BoardItemDirective
+    BoardElementIconComponent,
+    BoardElementDirective
   ]
 })
-export class BoardItemsModule { }
+export class BoardElementsModule { }
