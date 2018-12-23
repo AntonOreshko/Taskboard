@@ -45,4 +45,11 @@ export class UsersService extends AuthorizedService {
       })
     );
   }
+
+  public searchUsers(filter: string): Observable<User[]> {
+    return this._httpClient.get<User[]>(
+      this._baseUrl + 'api/users/search/' + filter,
+      { headers: this.getHeaders() }
+    );
+  }
 }

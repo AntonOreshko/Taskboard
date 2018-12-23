@@ -54,6 +54,10 @@ export class PersonalInfoComponent implements OnInit {
     }
   }
 
+  public contacts() {
+    this._router.navigate(['search-users']);
+  }
+
   public back() {
     this._router.navigate([this.returnUrl]);
   }

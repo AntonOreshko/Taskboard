@@ -1,0 +1,15 @@
+<div class="row mt-3 mb-2">
+    <div class="col-12">
+      <form class="form-inline">
+          <input
+            type="search" 
+            class="form-control form-control-lg ml-3" 
+            (input)="searchUsers($event.target.value)"
+            placeholder="Search"
+            name = "textFilter">        
+      </form>
+    </div>
+</div>
+<div class="d-flex flex-row flex-wrap">
+    <app-find-user-element *ngFor="let user of users" [user]="user"></app-find-user-element>
+</div>
