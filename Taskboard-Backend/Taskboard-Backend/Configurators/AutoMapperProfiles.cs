@@ -45,6 +45,12 @@ namespace WebApi.Configurators
             CreateMap<ContactRequestCreateDto, ContactRequest>();
 
             CreateMap<ContactRequest, ContactRequestReturnDto>();
+
+            CreateMap<ContactRequest, Contact>()
+                .ForMember(contact => contact.FirstUserId,
+                    opt => opt.MapFrom(request => request.SenderId))
+                .ForMember(contact => contact.SecondUserId,
+                    opt => opt.MapFrom(request => request.ReceiverId));
         }
     }
 }

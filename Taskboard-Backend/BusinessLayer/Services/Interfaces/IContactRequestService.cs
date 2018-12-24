@@ -17,7 +17,7 @@ namespace BusinessLayer.Services.Interfaces
 
         Task<ContactRequest> CreateContactRequest(ContactRequest contactRequest);
 
-        Task<ContactRequest> AcceptContactRequest(ContactRequest contactRequest);
+        Task<bool> AcceptContactRequest(ContactRequest contactRequest);
 
         Task<bool> CancelContactRequest(ContactRequest contactRequest);
 

@@ -37,11 +37,11 @@ namespace BusinessLayer.Services
             return contactRequest;
         }
 
-        public async Task<ContactRequest> AcceptContactRequest(ContactRequest contactRequest)
+        public async Task<bool> AcceptContactRequest(ContactRequest contactRequest)
         {
             await Remove(contactRequest);
 
-            return contactRequest;
+            return true;
         }
 
         public async Task<bool> CancelContactRequest(ContactRequest contactRequest)
