@@ -11,6 +11,8 @@ namespace BusinessLayer.Services.Interfaces
 
         Task<IEnumerable<Contact>> GetAllContactsByUser(long userId);
 
+        Task<IEnumerable<long>> GetAllContactIdsByUser(long userId);
+
         Task<Contact> CreateContact(Contact contact);
 
         Task<bool> DeleteContact(Contact contact);

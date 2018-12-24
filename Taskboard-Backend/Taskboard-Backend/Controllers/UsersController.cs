@@ -75,5 +75,29 @@ namespace WebApi.Controllers
 
             return Ok(usersToReturn);
         }
+
+        [HttpGet("contacts")]
+        public async Task<IActionResult> GetContacts()
+        {
+            var ids = await _contactService.GetAllContactIdsByUser(this.GetUserId());
+
+            var userContacts = await _userService.GetUsersIn(ids);
+
+            var usersReturnDto = _mapper.Map<IEnumerable<UserReturnDto>>(userContacts);
+
+            return Ok(usersReturnDto);
+        }
+
+        [HttpGet("contacts/{filter}")]
+        public async Task<IActionResult> SearchContacts(string filter)
+        {
+            var ids = await _contactService.GetAllContactIdsByUser(this.GetUserId());
+
+            var userContacts = await _userService.SearchUsersIn(filter, ids);
+
+            var usersReturnDto = _mapper.Map<IEnumerable<UserReturnDto>>(userContacts);
+
+            return Ok(usersReturnDto);
+        }
     }
 }

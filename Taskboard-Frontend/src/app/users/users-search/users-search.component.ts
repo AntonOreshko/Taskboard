@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
 
 @Component({
-  selector: 'app-find-users',
-  templateUrl: './find-users.component.html',
-  styleUrls: ['./find-users.component.css']
+  selector: 'app-users-search',
+  templateUrl: './users-search.component.html',
+  styleUrls: ['./users-search.component.css']
 })
-export class FindUsersComponent implements OnInit {
+export class UsersSearchComponent implements OnInit {
 
   public users: User[] = [];
 
@@ -24,6 +24,8 @@ export class FindUsersComponent implements OnInit {
      this._usersService.searchUsers(filter).subscribe(
       this.onFindUsers.bind(this)
      );
+    } else {
+      this.users = [];
     }
   }
 

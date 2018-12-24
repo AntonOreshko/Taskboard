@@ -28,6 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public personalInfo() {
-    this._router.navigate(['personal-info']);
+    this._router.navigate(['user/info']);
   }
 }

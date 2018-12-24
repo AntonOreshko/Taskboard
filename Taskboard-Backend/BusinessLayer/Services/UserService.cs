@@ -12,12 +12,12 @@ namespace BusinessLayer.Services
     {
         public IUserRepository UserRepository { get; set; }
 
-        private IConfiguration _configuration { get; set; }
+        private IConfiguration Configuration { get; set; }
 
         public UserService(IRepository<User> repo, IUserRepository customRepo, IConfiguration configuration): base(repo)
         {
             UserRepository = customRepo;
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         public async Task<User> Get(string email)
@@ -84,12 +84,22 @@ namespace BusinessLayer.Services
             return user;
         }
 
+        public async Task<IEnumerable<User>> GetUsersIn(IEnumerable<long> ids)
+        {
+            return await UserRepository.GetUsersIn(ids);
+        }
+
         public async Task<IEnumerable<User>> SearchUsers(string filter)
         {
             return await UserRepository.SearchUsers(filter);
         }
 
-        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        public async Task<IEnumerable<User>> SearchUsersIn(string filter, IEnumerable<long> ids)
+        {
+            return await UserRepository.SearchUsersIn(filter, ids);
+        }
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
@@ -98,12 +108,12 @@ namespace BusinessLayer.Services
             }
         }
 
-        public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        private static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                for (int i = 0; i < computedHash.Length; i++)
+                for (var i = 0; i < computedHash.Length; i++)
                 {
                     if (computedHash[i] != passwordHash[i]) return false;
                 }
@@ -111,6 +121,5 @@ namespace BusinessLayer.Services
 
             return true;
         }
-
     }
 }

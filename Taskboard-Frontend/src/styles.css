@@ -6,3 +6,18 @@
 .btn-width {
     min-width: 70px !important;
 }
+
+.contact-icon {
+    min-width: 280px;
+    max-width: 280px;
+}
+
+.contact-name {
+    min-height: 30px;
+    max-height: 30px;
+}
+
+.contact-description {
+    min-height: 60px;
+    max-height: 60px;
+}

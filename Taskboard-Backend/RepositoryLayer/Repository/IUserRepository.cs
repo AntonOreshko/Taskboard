@@ -10,6 +10,10 @@ namespace RepositoryLayer.Repository
 
         Task<bool> ContainsAsync(string email);
 
+        Task<IEnumerable<User>> GetUsersIn(IEnumerable<long> ids);
+
         Task<IEnumerable<User>> SearchUsers(string filter);
+
+        Task<IEnumerable<User>> SearchUsersIn(string filter, IEnumerable<long> ids);
     }
 }

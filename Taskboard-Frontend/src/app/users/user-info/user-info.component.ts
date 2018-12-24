@@ -6,11 +6,11 @@ import { UserEditData } from '../interfaces/user-edit-data';
 import { User } from 'src/app/auth/interfaces/user';
 
 @Component({
-  selector: 'app-personal-info',
-  templateUrl: './personal-info.component.html',
-  styleUrls: ['./personal-info.component.css']
+  selector: 'app-user-info',
+  templateUrl: './user-info.component.html',
+  styleUrls: ['./user-info.component.css']
 })
-export class PersonalInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit {
 
   public personalInfoForm: FormGroup;
 
@@ -52,14 +52,6 @@ export class PersonalInfoComponent implements OnInit {
         this.onEditUser.bind(this)
       );
     }
-  }
-
-  public contacts() {
-    this._router.navigate(['search-users']);
-  }
-
-  public back() {
-    this._router.navigate([this.returnUrl]);
   }
 
   public getUserEditData(): UserEditData {

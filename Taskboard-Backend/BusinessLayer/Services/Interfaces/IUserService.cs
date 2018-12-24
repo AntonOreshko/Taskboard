@@ -19,6 +19,10 @@ namespace BusinessLayer.Services.Interfaces
 
         Task<User> EditUser(User user, string oldPassword = null, string newPassword = null);
 
+        Task<IEnumerable<User>> GetUsersIn(IEnumerable<long> ids);
+
         Task<IEnumerable<User>> SearchUsers(string filter);
+
+        Task<IEnumerable<User>> SearchUsersIn(string filter, IEnumerable<long> ids);
     }
 }

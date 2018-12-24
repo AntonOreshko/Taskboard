@@ -20,9 +20,24 @@ namespace RepositoryLayer.EntityFramework
             return await Entities.AnyAsync(u => u.Email == email);
         }
 
+        public async Task<IEnumerable<User>> GetUsersIn(IEnumerable<long> ids)
+        {
+            return await Entities
+                .Where(u => ids.Contains(u.Id))
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<User>> SearchUsers(string filter)
         {
             return await Entities
+                .Where(u => u.FullName.Contains(filter) || u.Email.Contains(filter))
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<User>> SearchUsersIn(string filter, IEnumerable<long> ids)
+        {
+            return await Entities
+                .Where(u => ids.Contains(u.Id))
                 .Where(u => u.FullName.Contains(filter) || u.Email.Contains(filter))
                 .ToListAsync();
         }

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Services.Interfaces;
 using DomainModels.Models;
+using Microsoft.AspNetCore.Http.Features;
 using RepositoryLayer.Repository;
 
 namespace BusinessLayer.Services
@@ -18,6 +20,15 @@ namespace BusinessLayer.Services
         public async Task<IEnumerable<Contact>> GetAllContactsByUser(long userId)
         {
             return await ContactRepository.GetByUser(userId);
+        }
+
+        public async Task<IEnumerable<long>> GetAllContactIdsByUser(long userId)
+        {
+            var contacts = await GetAllContactsByUser(userId);
+
+            return contacts.Select(
+                c => c.FirstUserId == userId ? c.SecondUserId : c.FirstUserId
+            );
         }
 
         public async Task<Contact> CreateContact(Contact contact)

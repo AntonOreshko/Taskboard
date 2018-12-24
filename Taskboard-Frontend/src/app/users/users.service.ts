@@ -52,4 +52,18 @@ export class UsersService extends AuthorizedService {
       { headers: this.getHeaders() }
     );
   }
+
+  public getContacts(): Observable<User[]> {
+    return this._httpClient.get<User[]>(
+      this._baseUrl + 'api/users/contacts/',
+      { headers: this.getHeaders() }
+    );
+  }
+
+  public searchContacts(filter: string): Observable<User[]> {
+    return this._httpClient.get<User[]>(
+      this._baseUrl + 'api/users/contacts/' + filter,
+      { headers: this.getHeaders() }
+    );
+  }
 }
