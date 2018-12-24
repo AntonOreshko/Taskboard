@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
+import { UserWithContactStatus } from '../interfaces/user-with-contact-status';
 
 @Component({
   selector: 'app-users-search',
@@ -10,7 +11,7 @@ import { User } from 'src/app/auth/interfaces/user';
 })
 export class UsersSearchComponent implements OnInit {
 
-  public users: User[] = [];
+  public users: UserWithContactStatus[] = [];
 
   constructor(private _usersService: UsersService,
               private _router: Router) {
@@ -29,7 +30,7 @@ export class UsersSearchComponent implements OnInit {
     }
   }
 
-  public onFindUsers(users: User[]) {
+  public onFindUsers(users: UserWithContactStatus[]) {
     console.log(users);
     this.users = users;
   }

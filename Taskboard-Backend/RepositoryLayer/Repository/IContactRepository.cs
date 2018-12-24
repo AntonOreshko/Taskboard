@@ -7,5 +7,7 @@ namespace RepositoryLayer.Repository
     public interface IContactRepository: IRepository<Contact>
     {
         Task<IEnumerable<Contact>> GetByUser(long userId);
+
+        Task<bool> IsContact(long id, long contactId);
     }
 }

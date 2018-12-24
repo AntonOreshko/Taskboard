@@ -22,5 +22,13 @@ namespace BusinessLayer.Services.Interfaces
         Task<bool> CancelContactRequest(ContactRequest contactRequest);
 
         Task<bool> RejectContactRequest(ContactRequest contactRequest);
+
+        Task<bool> IsContactRequestSent(long userId, long requestedId);
+
+        Task<bool> IsContactRequestReceived(long userId, long requestedFrom);
+
+        Task<IEnumerable<ContactRequest>> GetIncomingContactRequests(long userId);
+
+        Task<IEnumerable<ContactRequest>> GetOutgoingContactRequests(long userId);
     }
 }

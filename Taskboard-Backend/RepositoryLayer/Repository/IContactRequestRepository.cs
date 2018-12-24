@@ -11,5 +11,9 @@ namespace RepositoryLayer.Repository
         Task<IEnumerable<ContactRequest>> GetIncomingByUser(long userId);
 
         Task<IEnumerable<ContactRequest>> GetOutgoingByUser(long userId);
+
+        Task<bool> IsContactRequestSent(long userId, long requestedId);
+
+        Task<bool> IsContactRequestReceived(long userId, long requestedFrom);
     }
 }

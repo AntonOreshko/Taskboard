@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './interfaces/user';
 import { HttpService } from '../core/http.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +59,9 @@ export class AuthService extends HttpService {
       this._token = localStorage.getItem('token');
     }
     return this._token;
+  }
+
+  public getUser(): User {
+    return this._userData;
   }
 }

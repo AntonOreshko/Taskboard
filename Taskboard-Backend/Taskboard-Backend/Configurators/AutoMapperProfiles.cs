@@ -51,6 +51,8 @@ namespace WebApi.Configurators
                     opt => opt.MapFrom(request => request.SenderId))
                 .ForMember(contact => contact.SecondUserId,
                     opt => opt.MapFrom(request => request.ReceiverId));
+
+            CreateMap<User, UserWithContactStatusReturnDto>();
         }
     }
 }

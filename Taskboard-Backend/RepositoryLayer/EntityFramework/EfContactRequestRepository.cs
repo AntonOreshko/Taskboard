@@ -29,5 +29,19 @@ namespace RepositoryLayer.EntityFramework
         {
             return await Entities.Where(c => c.SenderId == userId).ToListAsync();
         }
+
+        public async Task<bool> IsContactRequestSent(long userId, long requestedId)
+        {
+            return await Entities
+                .Where(c => c.SenderId == userId)
+                .AnyAsync(c => c.ReceiverId == requestedId);
+        }
+
+        public async Task<bool> IsContactRequestReceived(long userId, long requestedFrom)
+        {
+            return await Entities
+                .Where(c => c.SenderId == requestedFrom)
+                .AnyAsync(c => c.ReceiverId == userId);
+        }
     }
 }

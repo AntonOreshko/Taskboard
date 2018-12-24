@@ -19,5 +19,12 @@ namespace RepositoryLayer.EntityFramework
         {
             return await Entities.Where(c => c.FirstUserId == userId || c.SecondUserId == userId).ToListAsync();
         }
+
+        public async Task<bool> IsContact(long userId, long contactId)
+        {
+            return await Entities
+                .Where(c => c.FirstUserId == userId || c.SecondUserId == userId)
+                .AnyAsync(c => c.FirstUserId == contactId || c.SecondUserId == contactId);
+        }
     }
 }

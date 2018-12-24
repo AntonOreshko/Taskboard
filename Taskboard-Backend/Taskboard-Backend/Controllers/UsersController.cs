@@ -6,6 +6,7 @@ using DomainModels.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Dto;
+using WebApi.Enums;
 using WebApi.Extensions;
 
 namespace WebApi.Controllers
@@ -71,9 +72,28 @@ namespace WebApi.Controllers
         [HttpGet("search/{filter}")]
         public async Task<IActionResult> SearchUsers(string filter)
         {
+            var userId = this.GetUserId();
+
             var users = await _userService.SearchUsers(filter);
 
-            var usersToReturn = _mapper.Map<IEnumerable<UserReturnDto>>(users);
+            var usersToReturn = _mapper.Map<IEnumerable<UserWithContactStatusReturnDto>>(users);
+
+            foreach (var user in usersToReturn)
+            {
+                var isContact = await _contactService.IsContact(userId, user.Id);
+                if (isContact) user.ContactStatus = UserContactStatus.Contact;
+                else
+                {
+                    var isRequestSent = await _contactRequestService.IsContactRequestSent(userId, user.Id);
+                    if (isRequestSent) user.ContactStatus = UserContactStatus.RequestSent;
+                    else
+                    {
+                        var isRequestReceived = await _contactRequestService.IsContactRequestReceived(userId, user.Id);
+                        if (isRequestReceived) user.ContactStatus = UserContactStatus.RequestReceived;
+                        else user.ContactStatus = UserContactStatus.Missing;
+                    }
+                }
+            }
 
             return Ok(usersToReturn);
         }
@@ -102,7 +122,7 @@ namespace WebApi.Controllers
             return Ok(usersReturnDto);
         }
 
-        [HttpPost("invite/{userId}")]
+        [HttpPost("invite")]
         public async Task<IActionResult> InviteUser(ContactRequestCreateDto contactRequestCreateDto)
         {
             if (contactRequestCreateDto.SenderId != this.GetUserId())
@@ -148,7 +168,9 @@ namespace WebApi.Controllers
 
             var resultContact = await _contactService.CreateContact(contact);
 
-            return Ok(resultContact);
+            var contactDto = _mapper.Map<ContactReturnDto>(resultContact);
+
+            return Ok(contactDto);
         }
 
         [HttpPost("reject-invitation/{invitationId}")]

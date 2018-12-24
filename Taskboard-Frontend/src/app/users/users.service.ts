@@ -6,6 +6,10 @@ import { Observable, Observer } from 'rxjs';
 import { User } from '../auth/interfaces/user';
 import { share, map } from 'rxjs/operators';
 import { UserEditData } from './interfaces/user-edit-data';
+import { ContactRequestNewData } from './interfaces/contact-request-new-data';
+import { ContactRequest } from './interfaces/contact-request';
+import { Contact } from './interfaces/contact';
+import { UserWithContactStatus } from './interfaces/user-with-contact-status';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +50,8 @@ export class UsersService extends AuthorizedService {
     );
   }
 
-  public searchUsers(filter: string): Observable<User[]> {
-    return this._httpClient.get<User[]>(
+  public searchUsers(filter: string): Observable<UserWithContactStatus[]> {
+    return this._httpClient.get<UserWithContactStatus[]>(
       this._baseUrl + 'api/users/search/' + filter,
       { headers: this.getHeaders() }
     );
@@ -63,6 +67,35 @@ export class UsersService extends AuthorizedService {
   public searchContacts(filter: string): Observable<User[]> {
     return this._httpClient.get<User[]>(
       this._baseUrl + 'api/users/contacts/' + filter,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  public inviteUser(contactRequest: ContactRequestNewData): Observable<ContactRequest> {
+    return this._httpClient.post<ContactRequest>(
+      this._baseUrl + 'api/users/invite',
+      contactRequest,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  public cancelInvitation(id: number): Observable<boolean> {
+    return this._httpClient.get<boolean>(
+      this._baseUrl + 'api/users/cancel-invitation/' + id,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  public acceptInvitation(id: number): Observable<Contact> {
+    return this._httpClient.get<Contact>(
+      this._baseUrl + 'api/users/accept-invitation/' + id,
+      { headers: this.getHeaders() }
+    );
+  }
+
+  public rejectInvitation(id: number): Observable<boolean> {
+    return this._httpClient.get<boolean>(
+      this._baseUrl + 'api/users/reject-invitation/' + id,
       { headers: this.getHeaders() }
     );
   }

@@ -16,5 +16,7 @@ namespace BusinessLayer.Services.Interfaces
         Task<Contact> CreateContact(Contact contact);
 
         Task<bool> DeleteContact(Contact contact);
+
+        Task<bool> IsContact(long userId, long contactId);
     }
 }

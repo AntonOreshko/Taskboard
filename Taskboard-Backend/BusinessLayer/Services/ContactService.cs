@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer.Services.Interfaces;
 using DomainModels.Models;
-using Microsoft.AspNetCore.Http.Features;
 using RepositoryLayer.Repository;
 
 namespace BusinessLayer.Services
@@ -43,6 +42,11 @@ namespace BusinessLayer.Services
             await Remove(contact);
 
             return true;
+        }
+
+        public async Task<bool> IsContact(long userId, long contactId)
+        {
+            return await ContactRepository.IsContact(userId, contactId);
         }
     }
 }

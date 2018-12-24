@@ -57,5 +57,25 @@ namespace BusinessLayer.Services
 
             return true;
         }
+
+        public async Task<bool> IsContactRequestSent(long userId, long requestedId)
+        {
+            return await ContactRequestRepository.IsContactRequestSent(userId, requestedId);
+        }
+
+        public async Task<bool> IsContactRequestReceived(long userId, long requestedFrom)
+        {
+            return await ContactRequestRepository.IsContactRequestReceived(userId, requestedFrom);
+        }
+
+        public async Task<IEnumerable<ContactRequest>> GetIncomingContactRequests(long userId)
+        {
+            return await ContactRequestRepository.GetIncomingByUser(userId);
+        }
+
+        public async Task<IEnumerable<ContactRequest>> GetOutgoingContactRequests(long userId)
+        {
+            return await ContactRequestRepository.GetOutgoingByUser(userId);
+        }
     }
 }

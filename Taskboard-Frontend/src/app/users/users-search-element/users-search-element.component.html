@@ -1,9 +1,28 @@
 <div class="ml-2 mr-2 mt-2 mb-2">
-  <div class="card">
-    <div class="card-body contact-icon">
-      <h3 class="card-title text-truncate contact-name ">{{ user.fullName }}</h3>
-      <div class="card-text text-truncate contact-description">{{ user.email }}</div>
-      <button (click)="add()" class="btn btn-outline-primary my-2 my-sm-0 mr-2 btn-width">Add</button>
+    <div class="card">
+        <div class="card-body contact-icon">
+            <h3 class="card-title text-truncate contact-name ">{{ user.fullName }}</h3>
+            <div class="card-text text-truncate contact-description">{{ user.email }}</div>
+            <button 
+                *ngIf="isMissing()" 
+                (click)="invite()" 
+                class="btn btn-outline-primary my-2 my-sm-0 mr-2 btn-width">Invite</button>
+            <button
+                *ngIf="isContactRequestReceived()" 
+                (click)="accept()" 
+                class="btn btn-outline-success my-2 my-sm-0 mr-2 btn-width">Accept</button>
+            <button
+                *ngIf="isContactRequestReceived()" 
+                (click)="reject()" 
+                class="btn btn-outline-danger my-2 my-sm-0 mr-2 btn-width">Reject</button>
+            <button
+                *ngIf="isContactRequestSent()" 
+                (click)="cancel()" 
+                class="btn btn-outline-warning my-2 my-sm-0 mr-2 btn-width">Cancel</button>
+            <button
+                *ngIf="isContact()" 
+                (click)="remove()" 
+                class="btn btn-outline-danger my-2 my-sm-0 mr-2 btn-width">Remove</button>
+        </div>
     </div>
-  </div>
 </div>
