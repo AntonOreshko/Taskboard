@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ArrayOfError xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Error>
+    <Id>1</Id>
+    <ErrorCode>1</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>Unexpected error.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>Represents an error that doesn't fall into any other category.</Description>
+  </Error>
+  <Error>
+    <Id>2</Id>
+    <ErrorCode>107</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>General database error.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>A problem occurred while working with the database. The error message will contain more information about the error.</Description>
+  </Error>
+  <Error>
+    <Id>3</Id>
+    <ErrorCode>107</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The operation results in a duplicate key for a unique index.</ErrorMessage>
+    <Scope>Create</Scope>
+    <Description>You are trying to create an item with a field that requires a unique value (for example: "Id"). The error shows that an item with such value already exists.</Description>
+  </Error>
+  <Error>
+    <Id>4</Id>
+    <ErrorCode>107</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Duplicate values already exist for field Number of content type "New".</ErrorMessage>
+    <Scope>Update field</Scope>
+    <Description>You are trying to enforce a uniqueness constraint on the values of a field but the field already contains non-unique values.</Description>
+  </Error>
+  <Error>
+    <Id>5</Id>
+    <ErrorCode>201</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>A user with the same username already exists.</ErrorMessage>
+    <Scope>Register user, Update user</Scope>
+    <Description>The name of the user account you are creating or updating already exists.</Description>
+  </Error>
+  <Error>
+    <Id>6</Id>
+    <ErrorCode>202</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>No password was specified.</ErrorMessage>
+    <Scope>Register user</Scope>
+    <Description>You are trying to register a user without specifying a password.</Description>
+  </Error>
+  <Error>
+    <Id>7</Id>
+    <ErrorCode>203</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>No username was specified.</ErrorMessage>
+    <Scope>Register user</Scope>
+    <Description>You are trying to register a user without specifying a username.</Description>
+  </Error>
+  <Error>
+    <Id>8</Id>
+    <ErrorCode>204</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The password you specified is not a valid password literal.</ErrorMessage>
+    <Scope>Register user, Change password</Scope>
+    <Description>The specified password is not in the correct format.</Description>
+  </Error>
+  <Error>
+    <Id>9</Id>
+    <ErrorCode>205</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Invalid username or password.</ErrorMessage>
+    <Scope>Login</Scope>
+    <Description>A user with the specified username and password combination does not exist in the system.</Description>
+  </Error>
+  <Error>
+    <Id>10</Id>
+    <ErrorCode>206</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified user was not found.</ErrorMessage>
+    <Scope>Change password, Set password, Reset password</Scope>
+    <Description>The specified user was not found.</Description>
+  </Error>
+  <Error>
+    <Id>11</Id>
+    <ErrorCode>207</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified user data is invalid.</ErrorMessage>
+    <Scope>Register user, Update user</Scope>
+    <Description>Some of the data you specified when creating or updating a user is invalid. The error message will contain specific information about the invalid data.</Description>
+  </Error>
+  <Error>
+    <Id>12</Id>
+    <ErrorCode>208</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>The specified reset code is invalid.</ErrorMessage>
+    <Scope>Set password</Scope>
+    <Description>The reset code that you passed is incorrect or has expired.</Description>
+  </Error>
+  <Error>
+    <Id>13</Id>
+    <ErrorCode>209</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified verification code is invalid.</ErrorMessage>
+    <Scope>Verify user</Scope>
+    <Description>The verification code that you passed is incorrect or has expired.</Description>
+  </Error>
+  <Error>
+    <Id>14</Id>
+    <ErrorCode>210</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>The specified user is already verified.</ErrorMessage>
+    <Scope>Verify user</Scope>
+    <Description>You are attempting to verify a user account that has already been verified.</Description>
+  </Error>
+  <Error>
+    <Id>15</Id>
+    <ErrorCode>211</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>A user with the specified email already exists.</ErrorMessage>
+    <Scope>Register user, Link user</Scope>
+    <Description>You are attempting to use an email address that already exist in the system.</Description>
+  </Error>
+  <Error>
+    <Id>16</Id>
+    <ErrorCode>213</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified user has no email address defined.</ErrorMessage>
+    <Scope>Change password, Set password, Reset password, Register user, Resend verification</Scope>
+    <Description>The requested operation requires an email address to be set for the user.</Description>
+  </Error>
+  <Error>
+    <Id>17</Id>
+    <ErrorCode>214</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified identity provider is not supported.</ErrorMessage>
+    <Scope>Register user, Link user, AD FS metadata</Scope>
+    <Description>You have specified an identity provider value that is not recognized by the system.</Description>
+  </Error>
+  <Error>
+    <Id>18</Id>
+    <ErrorCode>215</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>No token was specified.</ErrorMessage>
+    <Scope>Register user, Link user</Scope>
+    <Description>The provider-generated user access token is not present in the request.</Description>
+  </Error>
+  <Error>
+    <Id>19</Id>
+    <ErrorCode>216</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>No identity provider was specified.</ErrorMessage>
+    <Scope>Register user, Link user</Scope>
+    <Description>You have not specified an identity provider.</Description>
+  </Error>
+  <Error>
+    <Id>20</Id>
+    <ErrorCode>217</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Cannot retrieve a user for the specified token.</ErrorMessage>
+    <Scope>Register user, Link user</Scope>
+    <Description>The system is unable to match the token you specified with a valid user for the identity provider you are using.</Description>
+  </Error>
+  <Error>
+    <Id>21</Id>
+    <ErrorCode>218</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The user is already linked with the specified provider.</ErrorMessage>
+    <Scope>Link user</Scope>
+    <Description>The user has already been linked to the specified authentication provider.</Description>
+  </Error>
+  <Error>
+    <Id>22</Id>
+    <ErrorCode>219</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The user cannot be unlinked because she is not linked with the specified provider.</ErrorMessage>
+    <Scope>Unlink user</Scope>
+    <Description>You are attempting to remove an authentication provider link that does not exist.</Description>
+  </Error>
+  <Error>
+    <Id>23</Id>
+    <ErrorCode>220</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The user cannot be unlinked.</ErrorMessage>
+    <Scope>Unlink user</Scope>
+    <Description>The user cannot be unlinked because it has a single identity provider.</Description>
+  </Error>
+  <Error>
+    <Id>24</Id>
+    <ErrorCode>221</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The operation is not supported for the given user.</ErrorMessage>
+    <Scope>Reset password, Resend verification email</Scope>
+    <Description>Reset password and resend verification email are not available for users coming from external identity providers.</Description>
+  </Error>
+  <Error>
+    <Id>25</Id>
+    <ErrorCode>222</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>The account quota is limited for this operation.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>Your subscription plan does not allow you to run the operation. The message will vary based on the operation you are trying to perform.</Description>
+  </Error>
+  <Error>
+    <Id>26</Id>
+    <ErrorCode>223</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>The account is disabled.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The account that hosts the application has been disabled.</Description>
+  </Error>
+  <Error>
+    <Id>27</Id>
+    <ErrorCode>224</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>The feature is not enabled for this account.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The experimental feature you are trying to use is not enabled for your account.</Description>
+  </Error>
+  <Error>
+    <Id>28</Id>
+    <ErrorCode>301</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Invalid access token.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The provided access token is not valid.</Description>
+  </Error>
+  <Error>
+    <Id>29</Id>
+    <ErrorCode>302</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Your access token has expired.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The validity of the provided access token has expired.</Description>
+  </Error>
+  <Error>
+    <Id>30</Id>
+    <ErrorCode>600</ErrorCode>
+    <HttpStatusCode>NotFound</HttpStatusCode>
+    <StatusCode>404</StatusCode>
+    <ErrorMessage>Not found.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The requested resource was not found.</Description>
+  </Error>
+  <Error>
+    <Id>31</Id>
+    <ErrorCode>601</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid request.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The request is invalid. Consult the accompanying error message to find out what went wrong.</Description>
+  </Error>
+  <Error>
+    <Id>32</Id>
+    <ErrorCode>602</ErrorCode>
+    <HttpStatusCode>MethodNotAllowed</HttpStatusCode>
+    <StatusCode>405</StatusCode>
+    <ErrorMessage>Method not supported.</ErrorMessage>
+    <Scope>N/A</Scope>
+    <Description>You cannot use this HTTP method with this resource.</Description>
+  </Error>
+  <Error>
+    <Id>33</Id>
+    <ErrorCode>603</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Access denied.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>You are not allowed to perform the operation.</Description>
+  </Error>
+  <Error>
+    <Id>34</Id>
+    <ErrorCode>604</ErrorCode>
+    <HttpStatusCode>Unauthorized</HttpStatusCode>
+    <StatusCode>401</StatusCode>
+    <ErrorMessage>Unauthorized.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>You did not provide authorization which is required for this operation.</Description>
+  </Error>
+  <Error>
+    <Id>35</Id>
+    <ErrorCode>605</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Missing or invalid API version.</ErrorMessage>
+    <Scope>N/A</Scope>
+    <Description>The API version is missing from the request URL.</Description>
+  </Error>
+  <Error>
+    <Id>36</Id>
+    <ErrorCode>606</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Missing App ID.</ErrorMessage>
+    <Scope>N/A</Scope>
+    <Description>The App ID is missing from the request URL.</Description>
+  </Error>
+  <Error>
+    <Id>37</Id>
+    <ErrorCode>607</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid App ID.</ErrorMessage>
+    <Scope>N/A</Scope>
+    <Description>The specified App ID is invalid. Make sure you are using the correct App ID.</Description>
+  </Error>
+  <Error>
+    <Id>38</Id>
+    <ErrorCode>608</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid filter expression.</ErrorMessage>
+    <Scope>Read, Delete, Update</Scope>
+    <Description>The filter expression you specified is invalid. Make sure the filter expression is a valid JSON object and it is in the required format.</Description>
+  </Error>
+  <Error>
+    <Id>39</Id>
+    <ErrorCode>609</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid sort expression.</ErrorMessage>
+    <Scope>Read</Scope>
+    <Description>The sort expression you specified is invalid. Make sure the sort expression is a valid JSON object and it is in the required format.</Description>
+  </Error>
+  <Error>
+    <Id>40</Id>
+    <ErrorCode>610</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Missing or invalid content type. Please specify a valid Content-Type header.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The Content-Type header is required for this operation, but is either missing or invalid.</Description>
+  </Error>
+  <Error>
+    <Id>41</Id>
+    <ErrorCode>611</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The specified content type was not found.</ErrorMessage>
+    <Scope>All data operations*, Metadata operations† for content types</Scope>
+    <Description>You specified an unexisting content type.</Description>
+  </Error>
+  <Error>
+    <Id>42</Id>
+    <ErrorCode>612</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid power fields definition.</ErrorMessage>
+    <Scope>Read</Scope>
+    <Description>The Power Fields definition you specified is invalid. Make sure the Power Fields definition is a valid JSON object and it is in the required format.</Description>
+  </Error>
+  <Error>
+    <Id>43</Id>
+    <ErrorCode>613</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Unsupported Content-Type.</ErrorMessage>
+    <Scope>Set cloud code</Scope>
+    <Description>The specified content type is not supported by this request.</Description>
+  </Error>
+  <Error>
+    <Id>44</Id>
+    <ErrorCode>614</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid custom parameter expression.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>The custom parameters expression you specified is invalid. Make sure it is a valid JSON object.</Description>
+  </Error>
+  <Error>
+    <Id>45</Id>
+    <ErrorCode>615</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid request body.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The body of the HTTP request is invalid. Make sure its format is consistent with the Content-Type header you specified.</Description>
+  </Error>
+  <Error>
+    <Id>46</Id>
+    <ErrorCode>616</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid fields expression.</ErrorMessage>
+    <Scope>Read</Scope>
+    <Description>The fields expression you specified is invalid. Make sure the fields expression is a valid JSON and it is in the required format.</Description>
+  </Error>
+  <Error>
+    <Id>47</Id>
+    <ErrorCode>617</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Loop detected.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>An infinite loop was detected. This usually happens when your cloud code makes a call that results in the execution of the same code.</Description>
+  </Error>
+  <Error>
+    <Id>48</Id>
+    <ErrorCode>618</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid expand expression.</ErrorMessage>
+    <Scope>Read operations</Scope>
+    <Description>The expand expression you specified is invalid. Make sure the expand expression is in the required format.</Description>
+  </Error>
+  <Error>
+    <Id>49</Id>
+    <ErrorCode>619</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid single field expression.</ErrorMessage>
+    <Scope>Read operations</Scope>
+    <Description>The single field expression you specified is invalid. Make sure the single field expression is a non-empty string.</Description>
+  </Error>
+  <Error>
+    <Id>50</Id>
+    <ErrorCode>630</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Invalid metadata definition specified.</ErrorMessage>
+    <Scope>Metadata operations†</Scope>
+    <Description>The metadata request contains or results in an invalid metadata definition. Refer to the accompanying error message to find out what went wrong.</Description>
+  </Error>
+  <Error>
+    <Id>51</Id>
+    <ErrorCode>640</ErrorCode>
+    <HttpStatusCode>NotAcceptable</HttpStatusCode>
+    <StatusCode>406</StatusCode>
+    <ErrorMessage>The specified response content type is not supported.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The response content type you specified in the request is not supported.</Description>
+  </Error>
+  <Error>
+    <Id>52</Id>
+    <ErrorCode>650</ErrorCode>
+    <HttpStatusCode>RequestTimeout</HttpStatusCode>
+    <StatusCode>408</StatusCode>
+    <ErrorMessage>The request timed out.</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The request timed out. A request times out if it does not complete in specified interval.</Description>
+  </Error>
+  <Error>
+    <Id>53</Id>
+    <ErrorCode>660</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Data Link Server Error</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The Data Link Server returned an error. Refer to the accompanying error message to find out what went wrong.</Description>
+  </Error>
+  <Error>
+    <Id>54</Id>
+    <ErrorCode>670</ErrorCode>
+    <HttpStatusCode>ServiceUnavailable</HttpStatusCode>
+    <StatusCode>503</StatusCode>
+    <ErrorMessage>Application is down for maintenance</ErrorMessage>
+    <Scope>All</Scope>
+    <Description>The application is down for maintenance. You are advised to stop all requests to it and resume them at a later time.</Description>
+  </Error>
+  <Error>
+    <Id>55</Id>
+    <ErrorCode>701</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>ContentType not specified.</ErrorMessage>
+    <Scope>Upload file (base64)</Scope>
+    <Description>The required ContentType parameter is not specified.</Description>
+  </Error>
+  <Error>
+    <Id>56</Id>
+    <ErrorCode>702</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Missing or invalid file content.</ErrorMessage>
+    <Scope>Upload file, Update file content, Set cloud code</Scope>
+    <Description>You have not specified file content or the specified file content is invalid.</Description>
+  </Error>
+  <Error>
+    <Id>57</Id>
+    <ErrorCode>801</ErrorCode>
+    <HttpStatusCode>NotFound</HttpStatusCode>
+    <StatusCode>404</StatusCode>
+    <ErrorMessage>Item not found.</ErrorMessage>
+    <Scope>Read by ID, Delete by ID, Update by ID</Scope>
+    <Description>The specified item was not found.</Description>
+  </Error>
+  <Error>
+    <Id>58</Id>
+    <ErrorCode>901</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>An error occurred during execution of custom server code.</ErrorMessage>
+    <Scope>All data operations*, Execute cloud function</Scope>
+    <Description>There was an error while executing your cloud code. Review your cloud code logic.</Description>
+  </Error>
+  <Error>
+    <Id>59</Id>
+    <ErrorCode>902</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>The execution of the custom server code timed out.</ErrorMessage>
+    <Scope>All data operations*, Execute cloud function</Scope>
+    <Description>The execution of your custom code took too long. Make sure you properly call the "done" callback in all cases.</Description>
+  </Error>
+  <Error>
+    <Id>60</Id>
+    <ErrorCode>910</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>The request was canceled by custom server code.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>Your custom cloud code canceled the operation.</Description>
+  </Error>
+  <Error>
+    <Id>61</Id>
+    <ErrorCode>951</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>The custom code definition failed to compile.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>The cloud code for the operation failed to compile. Check your cloud code for typos and syntax errors.</Description>
+  </Error>
+  <Error>
+    <Id>62</Id>
+    <ErrorCode>955</ErrorCode>
+    <HttpStatusCode>InternalServerError</HttpStatusCode>
+    <StatusCode>500</StatusCode>
+    <ErrorMessage>Custom cloud code is disabled for this type.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>The cloud code for this content type have been disabled due to too many timeouts. Contact Support for more information.</Description>
+  </Error>
+  <Error>
+    <Id>63</Id>
+    <ErrorCode>960</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>The request was processed but an error was generated by custom code.</ErrorMessage>
+    <Scope>All data operations*</Scope>
+    <Description>If you don't include your own error code when you are setting an error in your cloud code, then this default code is automatically added.</Description>
+  </Error>
+  <Error>
+    <Id>64</Id>
+    <ErrorCode>1000</ErrorCode>
+    <HttpStatusCode>BadRequest</HttpStatusCode>
+    <StatusCode>400</StatusCode>
+    <ErrorMessage>Error processing email template.</ErrorMessage>
+    <Scope>Send email</Scope>
+    <Description>There was an error processing the email template. The message may contain more information about the error.</Description>
+  </Error>
+  <Error>
+    <Id>65</Id>
+    <ErrorCode>205</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Invalid username.</ErrorMessage>
+    <Scope>Login</Scope>
+    <Description>A user with the specified username does not exist in the system.</Description>
+  </Error>
+  <Error>
+    <Id>66</Id>
+    <ErrorCode>205</ErrorCode>
+    <HttpStatusCode>Forbidden</HttpStatusCode>
+    <StatusCode>403</StatusCode>
+    <ErrorMessage>Wrong password.</ErrorMessage>
+    <Scope>Login</Scope>
+    <Description>Wrong password.</Description>
+  </Error>
+</ArrayOfError>

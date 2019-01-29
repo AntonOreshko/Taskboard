@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>c698d749-8a8f-4c58-961a-a30be3edd94a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GreenPipes" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.DataContracts\Common.DataContracts.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Errors\Common.Errors.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.MassTransit\Common.MassTransit.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Repository\Common.Repository.csproj" />
+    <ProjectReference Include="..\Auth.BusinessLayer.Interfaces\Auth.BusinessLayer.Interfaces.csproj" />
+    <ProjectReference Include="..\Auth.BusinessLayer\Auth.BusinessLayer.csproj" />
+    <ProjectReference Include="..\Auth.Repository\Auth.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MassTransit">
+      <HintPath>C:\Users\oresh\.nuget\packages\masstransit\5.2.3\lib\netstandard2.0\MassTransit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

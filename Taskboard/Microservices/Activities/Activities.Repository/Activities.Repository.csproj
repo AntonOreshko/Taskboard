@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.MongoDb\Common.MongoDb.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Repository\Common.Repository.csproj" />
+    <ProjectReference Include="..\Activities.Repository.Interfaces\Activities.Repository.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

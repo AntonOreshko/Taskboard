@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>64d5ba53-8f47-42d4-aab7-10fbc0c4b620</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.MassTransit\Common.MassTransit.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.MongoDb\Common.MongoDb.csproj" />
+    <ProjectReference Include="..\Activities.BusinessLayer.Interfaces\Activities.BusinessLayer.Interfaces.csproj" />
+    <ProjectReference Include="..\Activities.BusinessLayer\Activities.BusinessLayer.csproj" />
+    <ProjectReference Include="..\Activities.Repository.Interfaces\Activities.Repository.Interfaces.csproj" />
+    <ProjectReference Include="..\Activities.Repository\Activities.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

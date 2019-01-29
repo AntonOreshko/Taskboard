@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.DomainModels.Interfaces\Common.DomainModels.Interfaces.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.DomainModels\Common.DomainModels.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Repository.Interfaces\Common.Repository.Interfaces.csproj" />
+    <ProjectReference Include="..\Auth.DomainModels\Auth.DomainModels.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Taskboard",
+    "\\Taskboard\\Common",
+    "\\Taskboard\\Gateway",
+    "\\Taskboard\\Gateway\\API",
+    "\\Taskboard\\Services"
+  ],
+  "SelectedNode": "\\Taskboard\\Gateway",
+  "PreviewInSolutionExplorer": false
+}
