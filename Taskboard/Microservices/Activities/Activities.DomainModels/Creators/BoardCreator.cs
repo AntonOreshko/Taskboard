@@ -43,7 +43,7 @@ namespace Activities.DomainModels.Creators
             return boardDto;
         }
 
-        public BoardCreateResponse CreateBoardCreated(Board board)
+        public BoardCreateResponse CreateBoardCreateResponse(Board board)
         {
             var boardCreated = new BoardCreateResponse
             {
@@ -53,7 +53,7 @@ namespace Activities.DomainModels.Creators
             return boardCreated;
         }
 
-        public BoardUpdateResponse CreateBoardUpdated(Board board)
+        public BoardUpdateResponse CreateBoardUpdateResponse(Board board)
         {
             var boardUpdated = new BoardUpdateResponse()
             {
@@ -63,7 +63,7 @@ namespace Activities.DomainModels.Creators
             return boardUpdated;
         }
 
-        public BoardDeleteResponse CreateBoardDeleted(Guid id)
+        public BoardDeleteResponse CreateBoardDeleteResponse(Guid id)
         {
             var boardDeleted = new BoardDeleteResponse
             {

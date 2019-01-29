@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Auth.BusinessLayer.Interfaces;
 using Auth.DomainModels.Interfaces;
 using Auth.Repository.Interfaces;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
 using Common.Errors;

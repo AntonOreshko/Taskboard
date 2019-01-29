@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
 
-namespace Gateway.BusinessLayer.Interfaces.Auth
+namespace Common.BusinessLayer.Interfaces
 {
     public interface IAuthService: IService
     {

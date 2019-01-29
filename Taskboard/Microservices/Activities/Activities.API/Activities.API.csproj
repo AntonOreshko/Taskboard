@@ -14,9 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.BusinessLayer.Interfaces\Common.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.MassTransit\Common.MassTransit.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.MongoDb\Common.MongoDb.csproj" />
-    <ProjectReference Include="..\Activities.BusinessLayer.Interfaces\Activities.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\Activities.BusinessLayer\Activities.BusinessLayer.csproj" />
     <ProjectReference Include="..\Activities.Repository.Interfaces\Activities.Repository.Interfaces.csproj" />
     <ProjectReference Include="..\Activities.Repository\Activities.Repository.csproj" />

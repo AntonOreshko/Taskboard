@@ -1,14 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Activities.BusinessLayer.Interfaces;
-using Activities.DomainModels.Interfaces;
-using Activities.Repository.Interfaces;
+﻿using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Activities.Requests.Board;
-using Common.DataContracts.Activities.Responses.Board;
-using Common.Errors;
 using MassTransit;
 
-namespace Activities.API.Consumers
+namespace Activities.API.Consumers.Board
 {
     public class BoardDeleteConsumer: IConsumer<BoardDeleteRequest>
     {
@@ -24,7 +18,7 @@ namespace Activities.API.Consumers
             _activitiesService = activitiesService;
         }
 
-        public async Task Consume(ConsumeContext<BoardDeleteRequest> context)
+        public async System.Threading.Tasks.Task Consume(ConsumeContext<BoardDeleteRequest> context)
         {
             var response = await _activitiesService.BoardDelete(context.Message);
 

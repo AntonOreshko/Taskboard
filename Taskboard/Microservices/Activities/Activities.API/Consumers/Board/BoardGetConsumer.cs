@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using Activities.BusinessLayer.Interfaces;
+﻿using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Activities.Requests.Board;
 using MassTransit;
 
-namespace Activities.API.Consumers
+namespace Activities.API.Consumers.Board
 {
     public class BoardGetConsumer: IConsumer<BoardGetRequest>
     {
@@ -19,7 +18,7 @@ namespace Activities.API.Consumers
             _activitiesService = activitiesService;
         }
 
-        public async Task Consume(ConsumeContext<BoardGetRequest> context)
+        public async System.Threading.Tasks.Task Consume(ConsumeContext<BoardGetRequest> context)
         {
             var response = await _activitiesService.BoardGet(context.Message);
 

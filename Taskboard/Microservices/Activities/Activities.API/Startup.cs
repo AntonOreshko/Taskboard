@@ -1,13 +1,15 @@
 ﻿using System;
-using Activities.API.Consumers;
+using Activities.API.Consumers.Board;
+using Activities.API.Consumers.Task;
 using Activities.BusinessLayer;
-using Activities.BusinessLayer.Interfaces;
 using Activities.DomainModels.Creators;
 using Activities.DomainModels.Interfaces;
 using Activities.DomainModels.Models;
 using Activities.Repository.Interfaces;
 using Activities.Repository.MongoDb;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Activities.Requests.Board;
+using Common.DataContracts.Activities.Requests.Task;
 using Common.MassTransit.RabbitMq;
 using Common.MongoDb;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +41,7 @@ namespace Activities.API
             services.AddMongoDb(Configuration);
 
             services.AddTransient<IBoardCreator, BoardCreator>();
+            services.AddTransient<ITaskCreator, TaskCreator>();
 
             services.AddScoped<MongoDbContext<Board>>();
 
@@ -46,11 +49,19 @@ namespace Activities.API
 
             services
                 .AddMassTransitForRabbitMq(Configuration)
+
                 .RegisterConsumer<BoardCreateConsumer, BoardCreateRequest>()
                 .RegisterConsumer<BoardUpdateConsumer, BoardUpdateRequest>()
                 .RegisterConsumer<BoardDeleteConsumer, BoardDeleteRequest>()
                 .RegisterConsumer<BoardGetConsumer, BoardGetRequest>()
-                .RegisterConsumer<BoardGetListConsumer, BoardGetListRequest>();
+                .RegisterConsumer<BoardGetListConsumer, BoardGetListRequest>()
+
+                .RegisterConsumer<TaskCreateConsumer, TaskCreateRequest>()
+                .RegisterConsumer<TaskUpdateConsumer, TaskUpdateRequest>()
+                .RegisterConsumer<TaskDeleteConsumer, TaskDeleteRequest>()
+                .RegisterConsumer<TaskGetListConsumer, TaskGetListRequest>()
+                .RegisterConsumer<TaskGetConsumer, TaskGetRequest>()
+                .RegisterConsumer<TaskCompleteConsumer, TaskCompleteRequest>();
 
             services.AddScoped<IActivitiesService, ActivitiesService>();
 
@@ -80,7 +91,15 @@ namespace Activities.API
                 .ConnectConsumer<BoardUpdateConsumer, BoardUpdateRequest>()
                 .ConnectConsumer<BoardDeleteConsumer, BoardDeleteRequest>()
                 .ConnectConsumer<BoardGetConsumer, BoardGetRequest>()
-                .ConnectConsumer<BoardGetListConsumer, BoardGetListRequest>();
+                .ConnectConsumer<BoardGetListConsumer, BoardGetListRequest>()
+
+                .ConnectConsumer<TaskCreateConsumer, TaskCreateRequest>()
+                .ConnectConsumer<TaskUpdateConsumer, TaskUpdateRequest>()
+                .ConnectConsumer<TaskDeleteConsumer, TaskDeleteRequest>()
+                .ConnectConsumer<TaskGetListConsumer, TaskGetListRequest>()
+                .ConnectConsumer<TaskGetConsumer, TaskGetRequest>()
+                .ConnectConsumer<TaskCompleteConsumer, TaskCompleteRequest>();
+
         }
     }
 }

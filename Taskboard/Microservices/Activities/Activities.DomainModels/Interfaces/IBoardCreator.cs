@@ -12,11 +12,11 @@ namespace Activities.DomainModels.Interfaces
 
         Board UpdateBoard(Board board, BoardUpdateRequest boardUpdateRequest);
 
-        BoardCreateResponse CreateBoardCreated(Board board);
+        BoardCreateResponse CreateBoardCreateResponse(Board board);
 
-        BoardUpdateResponse CreateBoardUpdated(Board board);
+        BoardUpdateResponse CreateBoardUpdateResponse(Board board);
 
-        BoardDeleteResponse CreateBoardDeleted(Guid id);
+        BoardDeleteResponse CreateBoardDeleteResponse(Guid id);
 
         BoardGetListResponse CreateBoardGetListResponse(IEnumerable<Board> boards);
 

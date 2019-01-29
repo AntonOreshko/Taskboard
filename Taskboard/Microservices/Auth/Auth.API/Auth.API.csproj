@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.BusinessLayer.Interfaces\Common.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.DataContracts\Common.DataContracts.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.Errors\Common.Errors.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.MassTransit\Common.MassTransit.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.Repository\Common.Repository.csproj" />
-    <ProjectReference Include="..\Auth.BusinessLayer.Interfaces\Auth.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\Auth.BusinessLayer\Auth.BusinessLayer.csproj" />
     <ProjectReference Include="..\Auth.Repository\Auth.Repository.csproj" />
   </ItemGroup>

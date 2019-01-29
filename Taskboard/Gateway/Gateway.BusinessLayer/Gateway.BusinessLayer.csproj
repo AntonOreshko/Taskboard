@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gateway.BusinessLayer.Interfaces\Gateway.BusinessLayer.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Common\Common.BusinessLayer.Interfaces\Common.BusinessLayer.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auth.BusinessLayer.Interfaces\Auth.BusinessLayer.Interfaces.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.BusinessLayer.Interfaces\Common.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\Auth.Repository.Interfaces\Auth.Repository.Interfaces.csproj" />
   </ItemGroup>
 

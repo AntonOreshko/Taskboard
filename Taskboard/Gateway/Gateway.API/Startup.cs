@@ -1,21 +1,21 @@
 ﻿using System;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Activities.Requests.Board;
+using Common.DataContracts.Activities.Requests.Task;
 using Common.DataContracts.Activities.Responses.Board;
+using Common.DataContracts.Activities.Responses.Task;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
 using Common.JWT;
 using Common.MassTransit.RabbitMq;
 using Gateway.BusinessLayer.Activities;
 using Gateway.BusinessLayer.Auth;
-using Gateway.BusinessLayer.Interfaces.Activities;
-using Gateway.BusinessLayer.Interfaces.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using BoardUpdateResponse = Common.DataContracts.Activities.Responses.Board.BoardUpdateResponse;
 
 namespace Gateway.API
 {
@@ -41,13 +41,22 @@ namespace Gateway.API
 
             services
                 .AddMassTransitForRabbitMq(Configuration)
+
                 .AddRequestClient<UserRegisterRequest, UserRegisterResponse>(Configuration)
                 .AddRequestClient<UserLoginRequest, UserLoginResponse>(Configuration)
+
                 .AddRequestClient<BoardCreateRequest, BoardCreateResponse>(Configuration)
                 .AddRequestClient<BoardUpdateRequest, BoardUpdateResponse>(Configuration)
                 .AddRequestClient<BoardDeleteRequest, BoardDeleteResponse>(Configuration)
                 .AddRequestClient<BoardGetListRequest, BoardGetListResponse>(Configuration)
-                .AddRequestClient<BoardGetRequest, BoardGetResponse>(Configuration);
+                .AddRequestClient<BoardGetRequest, BoardGetResponse>(Configuration)
+
+                .AddRequestClient<TaskCreateRequest, TaskCreateResponse>(Configuration)
+                .AddRequestClient<TaskUpdateRequest, TaskUpdateResponse>(Configuration)
+                .AddRequestClient<TaskDeleteRequest, TaskDeleteResponse>(Configuration)
+                .AddRequestClient<TaskGetListRequest, TaskGetListResponse>(Configuration)
+                .AddRequestClient<TaskGetRequest, TaskGetResponse>(Configuration)
+                .AddRequestClient<TaskCompleteRequest, TaskCompleteResponse>(Configuration);
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IActivitiesService, ActivitiesService>();

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Enums;
 using Common.JWT;
 using Common.Middleware.ExceptionsFilter;
-using Gateway.BusinessLayer.Interfaces.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gateway.API.Controllers

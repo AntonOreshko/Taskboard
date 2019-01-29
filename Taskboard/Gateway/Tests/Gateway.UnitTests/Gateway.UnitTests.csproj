@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gateway.API\Gateway.API.csproj" />
-    <ProjectReference Include="..\..\Gateway.BusinessLayer.Interfaces\Gateway.BusinessLayer.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

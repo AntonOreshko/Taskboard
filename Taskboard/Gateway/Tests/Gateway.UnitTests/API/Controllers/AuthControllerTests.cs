@@ -1,12 +1,12 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
 using Common.DataContracts.Enums;
 using Common.DataContracts.Errors;
 using Common.JWT;
 using Gateway.API.Controllers;
-using Gateway.BusinessLayer.Interfaces.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;

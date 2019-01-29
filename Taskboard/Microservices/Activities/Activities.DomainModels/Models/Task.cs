@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Common.DomainModels.Interfaces;
 
 namespace Activities.DomainModels.Models
 {
-    public class Board: IPersistentEntity
+    public class Task: IPersistentEntity
     {
         public Guid Id { get; set; }
 
@@ -12,10 +11,12 @@ namespace Activities.DomainModels.Models
 
         public Guid CreatedById { get; set; }
 
+        public Guid BoardId { get; set; }
+
+        public bool Completed { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public List<Task> Tasks { get; set; }
     }
 }

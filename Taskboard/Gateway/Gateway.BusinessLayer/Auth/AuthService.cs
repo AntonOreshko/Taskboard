@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
-using Gateway.BusinessLayer.Interfaces.Auth;
 using MassTransit;
 
 namespace Gateway.BusinessLayer.Auth

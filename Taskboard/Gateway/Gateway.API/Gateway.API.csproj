@@ -13,10 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.BusinessLayer.Interfaces\Common.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\..\Common\Common.JWT\Common.JWT.csproj" />
     <ProjectReference Include="..\..\Common\Common.MassTransit\Common.MassTransit.csproj" />
     <ProjectReference Include="..\..\Common\Common.Middleware\Common.Middleware.csproj" />
-    <ProjectReference Include="..\Gateway.BusinessLayer.Interfaces\Gateway.BusinessLayer.Interfaces.csproj" />
     <ProjectReference Include="..\Gateway.BusinessLayer\Gateway.BusinessLayer.csproj" />
   </ItemGroup>
 

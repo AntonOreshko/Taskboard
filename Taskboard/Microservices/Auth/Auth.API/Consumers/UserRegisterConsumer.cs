@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Auth.BusinessLayer.Interfaces;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using MassTransit;
 

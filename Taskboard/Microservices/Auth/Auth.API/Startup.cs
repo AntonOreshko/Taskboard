@@ -1,13 +1,13 @@
 ﻿using System;
 using Auth.API.Consumers;
 using Auth.BusinessLayer;
-using Auth.BusinessLayer.Interfaces;
 using Auth.DomainModels.Creators;
 using Auth.DomainModels.Interfaces;
 using Auth.DomainModels.Models;
 using Auth.Repository.EntityFramework;
 using Auth.Repository.EntityFramework.Context;
 using Auth.Repository.Interfaces;
+using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
 using Common.MassTransit.RabbitMq;
 using Common.Repository;
