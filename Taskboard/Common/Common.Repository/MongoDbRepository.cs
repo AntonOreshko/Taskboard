@@ -17,31 +17,31 @@ namespace Common.Repository
             Context = context;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await Context.Items
                 .Find(_ => true)
                 .ToListAsync();
         }
 
-        public async Task<T> GetAsync(Guid id)
+        public virtual async Task<T> GetAsync(Guid id)
         {
             return await Context.Items
                 .Find(item => item.Id == id)
                 .FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public virtual async Task InsertAsync(T entity)
         {
             await Context.Items.InsertOneAsync(entity);
         }
 
-        public async Task InsertRangeAsync(IEnumerable<T> entities)
+        public virtual async Task InsertRangeAsync(IEnumerable<T> entities)
         {
             await Context.Items.InsertManyAsync(entities);
         }
 
-        public async Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
             await Context.Items
                 .ReplaceOneAsync(
@@ -50,14 +50,14 @@ namespace Common.Repository
                     new UpdateOptions { IsUpsert = true });
         }
 
-        public async Task RemoveAsync(Guid id)
+        public virtual async Task RemoveAsync(Guid id)
         {
             await Context.Items
                 .DeleteOneAsync(Builders<T>.Filter.Eq("Id", id));
         }
 
 
-        public async Task ClearAsync()
+        public virtual async Task ClearAsync()
         {
             await Context.Items
                 .DeleteManyAsync(_ => true);

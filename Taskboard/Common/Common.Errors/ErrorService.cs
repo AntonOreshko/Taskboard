@@ -6,9 +6,10 @@ using System.Xml.Serialization;
 
 namespace Common.Errors
 {
-    public static class ErrorManager
+    public class ErrorService: IErrorService
     {
-        private static List<Error> _errors = new List<Error>();
+        private readonly List<Error> _errors;
+            //= new List<Error>();
         //{
         //    new Error { ErrorCode = 1, HttpStatusCode = HttpStatusCode.InternalServerError, StatusCode = 500, ErrorMessage = "Unexpected error.",
         //        Scope = "All", Description = "Represents an error that doesn't fall into any other category."},
@@ -140,12 +141,12 @@ namespace Common.Errors
         //        Scope = "Send email", Description = "There was an error processing the email template. The message may contain more information about the error."},
         //};
 
-        static ErrorManager()
+        public ErrorService()
         {
             _errors = DeserializeFromXml<List<Error>>("Resources/Errors.xml");
         }
 
-        private static void SerializeToXml<T>(T value, string path)
+        private void SerializeToXml<T>(T value, string path)
         {
             using (var writer = new XmlTextWriter(path, Encoding.UTF8))
             {
@@ -154,7 +155,7 @@ namespace Common.Errors
             }
         }
 
-        private static T DeserializeFromXml<T>(string path)
+        private T DeserializeFromXml<T>(string path)
         {
             using (var reader = new XmlTextReader(path))
             {
@@ -163,9 +164,14 @@ namespace Common.Errors
             }
         }
 
-        public static Error GetById(short id)
+        public Error GetError(ErrorType errorType)
         {
-            return _errors.First(e => e.Id == id);
+            return GetError((short) errorType);
+        }
+
+        public Error GetError(short id)
+        {
+            return _errors.Single(e => e.Id == id);
         }
     }
 }

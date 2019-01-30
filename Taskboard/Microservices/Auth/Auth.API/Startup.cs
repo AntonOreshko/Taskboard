@@ -9,6 +9,7 @@ using Auth.Repository.EntityFramework.Context;
 using Auth.Repository.Interfaces;
 using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Auth.Requests;
+using Common.Errors;
 using Common.MassTransit.RabbitMq;
 using Common.Repository;
 using Common.Repository.Interfaces;
@@ -39,6 +40,8 @@ namespace Auth.API
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                 });
+
+            services.AddSingleton<IErrorService, ErrorService>();
 
             services.AddDbContext<AuthContext>(
                 options =>

@@ -10,6 +10,7 @@ using Activities.Repository.MongoDb;
 using Common.BusinessLayer.Interfaces;
 using Common.DataContracts.Activities.Requests.Board;
 using Common.DataContracts.Activities.Requests.Task;
+using Common.Errors;
 using Common.MassTransit.RabbitMq;
 using Common.MongoDb;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ namespace Activities.API
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+
+            services.AddSingleton<IErrorService, ErrorService>();
 
             services.AddMongoDb(Configuration);
 

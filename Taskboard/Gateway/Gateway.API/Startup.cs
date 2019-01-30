@@ -6,6 +6,7 @@ using Common.DataContracts.Activities.Responses.Board;
 using Common.DataContracts.Activities.Responses.Task;
 using Common.DataContracts.Auth.Requests;
 using Common.DataContracts.Auth.Responses;
+using Common.Errors;
 using Common.JWT;
 using Common.MassTransit.RabbitMq;
 using Gateway.BusinessLayer.Activities;
@@ -38,6 +39,8 @@ namespace Gateway.API
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                 });
+
+            services.AddSingleton<IErrorService, ErrorService>();
 
             services
                 .AddMassTransitForRabbitMq(Configuration)

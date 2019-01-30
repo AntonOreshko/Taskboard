@@ -22,14 +22,18 @@ namespace Activities.BusinessLayer
 
         private readonly ITaskCreator _taskCreator;
 
+        private readonly IErrorService _errorService;
+
         public ActivitiesService(
             IBoardRepository boardRepository,
             IBoardCreator boardCreator,
-            ITaskCreator taskCreator)
+            ITaskCreator taskCreator,
+            IErrorService errorService)
         {
             _boardRepository = boardRepository;
             _boardCreator = boardCreator;
             _taskCreator = taskCreator;
+            _errorService = errorService;
         }
 
         public async Task<BoardCreateResponse> BoardCreate(BoardCreateRequest request)
@@ -49,10 +53,19 @@ namespace Activities.BusinessLayer
             BoardUpdateResponse response;
 
             var board = await _boardRepository.GetAsync(request.Id);
+
+            if (board == null)
+            {
+                response = new BoardUpdateResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
                 response = new BoardUpdateResponse { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
@@ -72,10 +85,19 @@ namespace Activities.BusinessLayer
             BoardDeleteResponse response;
 
             var board = await _boardRepository.GetAsync(request.Id);
+
+            if (board == null)
+            {
+                response = new BoardDeleteResponse { Id = Guid.Empty };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
                 response = new BoardDeleteResponse { Id = Guid.Empty };
-                response.Failed(ErrorManager.GetById(33));
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
@@ -105,10 +127,19 @@ namespace Activities.BusinessLayer
             BoardGetResponse response;
 
             var board = await _boardRepository.GetAsync(request.Id);
+
+            if (board == null)
+            {
+                response = new BoardGetResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
                 response = new BoardGetResponse { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
@@ -124,10 +155,19 @@ namespace Activities.BusinessLayer
             TaskCreateResponse response;
 
             var board = await _boardRepository.GetAsync(request.BoardId);
+
+            if (board == null)
+            {
+                response = new TaskCreateResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
                 response = new TaskCreateResponse { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
@@ -136,9 +176,7 @@ namespace Activities.BusinessLayer
 
             var task = _taskCreator.CreateTask(request);
 
-            board.Tasks.Add(task);
-
-            await _boardRepository.UpdateAsync(board);
+            await _boardRepository.TaskCreate(request.BoardId, task);
 
             response = _taskCreator.CreateTaskCreateResponse(task);
             response.Succeeded();
@@ -151,15 +189,31 @@ namespace Activities.BusinessLayer
             TaskUpdateResponse response;
 
             var board = await _boardRepository.GetAsync(request.BoardId);
+
+            if (board == null)
+            {
+                response = new TaskUpdateResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
-                response = new TaskUpdateResponse() { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response = new TaskUpdateResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
 
             var task = board.Tasks.Single(t => t.Id == request.Id);
+            if (task == null)
+            {
+                response = new TaskUpdateResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
 
             _taskCreator.UpdateTask(task, request);
 
@@ -177,15 +231,32 @@ namespace Activities.BusinessLayer
 
             var board = await _boardRepository.GetAsync(request.BoardId);
 
-            if (board.CreatedById != request.UserId)
+            if (board == null)
             {
-                response = new TaskDeleteResponse() { Id = Guid.Empty };
-                response.Failed(ErrorManager.GetById(33));
+                response = new TaskDeleteResponse { Id = Guid.Empty };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
 
                 return response;
             }
 
-            board.Tasks.RemoveAll(t => t.Id == request.Id);
+            if (board.CreatedById != request.UserId)
+            {
+                response = new TaskDeleteResponse { Id = Guid.Empty };
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
+
+                return response;
+            }
+
+            var task = board.Tasks.Single(t => t.Id == request.Id);
+            if (task == null)
+            {
+                response = new TaskDeleteResponse { Id = Guid.Empty };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
+            board.Tasks.Remove(task);
 
             await _boardRepository.UpdateAsync(board);
 
@@ -201,10 +272,18 @@ namespace Activities.BusinessLayer
 
             var board = await _boardRepository.GetAsync(request.BoardId);
 
+            if (board == null)
+            {
+                response = new TaskGetListResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
-                response = new TaskGetListResponse() { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response = new TaskGetListResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
@@ -223,15 +302,30 @@ namespace Activities.BusinessLayer
 
             var board = await _boardRepository.GetAsync(request.BoardId);
 
+            if (board == null)
+            {
+                response = new TaskGetResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
-                response = new TaskGetResponse() { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response = new TaskGetResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
 
             var task = board.Tasks.Single(t => t.Id == request.Id);
+            if (task == null)
+            {
+                response = new TaskGetResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
 
             response = _taskCreator.CreateTaskGetResponse(task);
             response.Succeeded();
@@ -245,15 +339,30 @@ namespace Activities.BusinessLayer
 
             var board = await _boardRepository.GetAsync(request.BoardId);
 
+            if (board != null)
+            {
+                response = new TaskCompleteResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
+
             if (board.CreatedById != request.UserId)
             {
-                response = new TaskCompleteResponse() { Data = null };
-                response.Failed(ErrorManager.GetById(33));
+                response = new TaskCompleteResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.AccessDenied));
 
                 return response;
             }
 
             var task = board.Tasks.Single(t => t.Id == request.Id);
+            if (task == null)
+            {
+                response = new TaskCompleteResponse { Data = null };
+                response.Failed(_errorService.GetError(ErrorType.ItemNotFound));
+
+                return response;
+            }
 
             task.Completed = true;
 

@@ -16,13 +16,17 @@ namespace Auth.BusinessLayer
 
         private readonly IUserCreator _userCreator;
 
+        private readonly IErrorService _errorService;
+
         public AuthService(IUserEfRepository userEfRepository,
             IPasswordCreator passwordCreator,
-            IUserCreator userCreator)
+            IUserCreator userCreator,
+            IErrorService errorService)
         {
             _userEfRepository = userEfRepository;
             _passwordCreator = passwordCreator;
             _userCreator = userCreator;
+            _errorService = errorService;
         }
 
         public async Task<UserRegisterResponse> Register(UserRegisterRequest data)
@@ -33,7 +37,7 @@ namespace Auth.BusinessLayer
             if (user != null)
             {
                 userRegisterResponse = _userCreator.CreateUserRegistered(user);
-                userRegisterResponse.Failed(ErrorManager.GetById(15));
+                userRegisterResponse.Failed(_errorService.GetError(ErrorType.UserAlreadyExists));
 
                 return userRegisterResponse;
             }
@@ -59,7 +63,7 @@ namespace Auth.BusinessLayer
             if (user == null)
             {
                 userLoginResponse = new UserLoginResponse();
-                userLoginResponse.Failed(ErrorManager.GetById(65));
+                userLoginResponse.Failed(_errorService.GetError(ErrorType.InvalidUsername));
 
                 return userLoginResponse;
             }
@@ -67,7 +71,7 @@ namespace Auth.BusinessLayer
             if (!_passwordCreator.VerifyPasswordHash(data.Password, user.PasswordHash, user.PasswordSalt))
             {
                 userLoginResponse = _userCreator.CreateUserLoggedIn(user);
-                userLoginResponse.Failed(ErrorManager.GetById(66));
+                userLoginResponse.Failed(_errorService.GetError(ErrorType.WrongPassword));
 
                 return userLoginResponse;
             }

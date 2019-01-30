@@ -1,7 +1,5 @@
-﻿using Activities.DomainModels.Models;
-using Common.MongoDb;
+﻿using Common.MongoDb;
 using Microsoft.Extensions.Options;
-using MongoDB.Driver;
 
 namespace Activities.Repository.MongoDb.Context
 {
