@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Activities.DomainModels.Models;
 using Activities.Repository.Interfaces;
