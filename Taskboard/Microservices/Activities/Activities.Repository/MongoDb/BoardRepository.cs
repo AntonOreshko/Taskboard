@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Activities.DomainModels.Models;
 using Activities.Repository.Interfaces;
@@ -34,13 +35,35 @@ namespace Activities.Repository.MongoDb
             await Context.Items.UpdateOneAsync(filter, update);
         }
 
-        public async Task TaskCreate(Guid boardId, DomainModels.Models.Task task)
+		public async Task InsertTaskAsync(Guid boardId, DomainModels.Models.Task task)
         {
             var filter = Builders<Board>.Filter.Eq(b => b.Id, boardId);
-            var update = Builders<Board>.Update
-                .AddToSet(f => f.Tasks, task);
+            var update = Builders<Board>.Update.AddToSet(f => f.Tasks, task);
 
             await Context.Items.UpdateOneAsync(filter, update);
         }
-    }
+
+        public async Task UpdateTaskAsync(Guid boardId, DomainModels.Models.Task task)
+        {
+	        var filter = Builders<Board>.Filter.Eq(b => b.Id, boardId) 
+	                     & Builders<Board>.Filter.ElemMatch(b => b.Tasks, t => t.Id == task.Id);
+
+	        var update = Builders<Board>.Update
+		        .Set(b => b.Tasks[-1].Name, task.Name)
+		        .Set(b => b.Tasks[-1].Description, task.Description);
+
+	        await Context.Items.UpdateOneAsync(filter, update);
+        }
+
+        public async Task RemoveTaskAsync(Guid boardId, Guid taskId)
+        {
+	        var filter = Builders<Board>.Filter.Eq(b => b.Id, boardId);
+
+			var update = Builders<Board>.Update
+		        .PullFilter(b => b.Tasks, t => t.Id == taskId);
+
+	        await Context.Items.UpdateOneAsync(filter, update);
+        }
+
+	}
 }

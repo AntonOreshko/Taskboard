@@ -11,6 +11,10 @@ namespace Activities.Repository.Interfaces
     {
         Task<IEnumerable<Board>> GetByUserId(Guid userId);
 
-        Task TaskCreate(Guid boardId, DomainModels.Models.Task task);
+        Task InsertTaskAsync(Guid boardId, DomainModels.Models.Task task);
+
+		Task UpdateTaskAsync(Guid boardId, DomainModels.Models.Task task);
+
+		Task RemoveTaskAsync(Guid boardId, Guid taskId);
     }
 }

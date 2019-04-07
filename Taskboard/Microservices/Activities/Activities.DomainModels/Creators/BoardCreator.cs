@@ -19,7 +19,8 @@ namespace Activities.DomainModels.Creators
                 Name = boardCreateRequest.Name,
                 Description = boardCreateRequest.Description,
                 CreatedById = boardCreateRequest.UserId,
-                Created = DateTime.UtcNow
+                Created = DateTime.UtcNow,
+				Tasks = new List<Task>()
             };
 
             return board;

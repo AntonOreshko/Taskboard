@@ -176,7 +176,7 @@ namespace Activities.BusinessLayer
 
             var task = _taskCreator.CreateTask(request);
 
-            await _boardRepository.TaskCreate(request.BoardId, task);
+            await _boardRepository.InsertTaskAsync(request.BoardId, task);
 
             response = _taskCreator.CreateTaskCreateResponse(task);
             response.Succeeded();
@@ -217,7 +217,7 @@ namespace Activities.BusinessLayer
 
             _taskCreator.UpdateTask(task, request);
 
-            await _boardRepository.UpdateAsync(board);
+            await _boardRepository.UpdateTaskAsync(board.Id, task);
 
             response = _taskCreator.CreateTaskUpdateResponse(task);
             response.Succeeded();
@@ -256,9 +256,7 @@ namespace Activities.BusinessLayer
                 return response;
             }
 
-            board.Tasks.Remove(task);
-
-            await _boardRepository.UpdateAsync(board);
+            await _boardRepository.RemoveTaskAsync(board.Id, task.Id);
 
             response = _taskCreator.CreateTaskDeleteResponse(request.Id);
             response.Succeeded();
@@ -287,8 +285,6 @@ namespace Activities.BusinessLayer
 
                 return response;
             }
-
-            if (board.Tasks == null) board.Tasks = new List<Task>();
 
             response = _taskCreator.CreateTaskGetListResponse(board.Tasks);
             response.Succeeded();
